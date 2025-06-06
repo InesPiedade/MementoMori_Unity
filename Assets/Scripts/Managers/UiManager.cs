@@ -25,6 +25,7 @@ public class UiManager : MonoBehaviour
     [SerializeField] private VideoPlayer video1;
     [SerializeField] private GameObject flowerText;
     [SerializeField] private GameObject altarText;
+    [SerializeField] private GameObject itemFlowerText;
 
     #endregion
 
@@ -42,6 +43,9 @@ public class UiManager : MonoBehaviour
 
     private void Start()
     {
+        //altarText.SetActive(false);
+        //itemFlowerText.SetActive(false);
+
         player = GameObject.FindObjectOfType<Player>();
 
         organize = new Dictionary<Screens, GameObject>();
@@ -52,6 +56,8 @@ public class UiManager : MonoBehaviour
 
     private void Update()
     {
+
+
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             if (isPause)
@@ -116,9 +122,9 @@ public class UiManager : MonoBehaviour
         ShowPanel(Screens.GameUi);
         player.enabled = true;
         isPause = false;
-        altarText.SetActive(true);
-        flowerText.SetActive(false);
-
+        //altarText.SetActive(true);
+        //flowerText.SetActive(false);
+        //itemFlowerText.SetActive(true);
     }
 
     /// ///////////////

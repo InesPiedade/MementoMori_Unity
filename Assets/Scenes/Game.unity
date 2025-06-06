@@ -302,7 +302,7 @@ Transform:
   m_GameObject: {fileID: 64918497}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 279.4, y: -3, z: 0}
+  m_LocalPosition: {x: -3.2, y: -3, z: 0}
   m_LocalScale: {x: 1.96, y: 1.96, z: 1.96}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -4026,7 +4026,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1039904111
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4081,11 +4081,11 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1564358021}
+  m_Father: {fileID: 1433016631}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -633, y: 15.000011}
+  m_AnchoredPosition: {x: -2, y: -34.999985}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1060550513
@@ -5849,7 +5849,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1433016631
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5861,7 +5861,8 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1039904113}
   m_Father: {fileID: 1466758301}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -6330,7 +6331,6 @@ RectTransform:
   m_Children:
   - {fileID: 923733539}
   - {fileID: 2133900224}
-  - {fileID: 1039904113}
   m_Father: {fileID: 1466758301}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -8280,6 +8280,7 @@ MonoBehaviour:
   video1: {fileID: 1640513092}
   flowerText: {fileID: 923733538}
   altarText: {fileID: 2133900221}
+  itemFlowerText: {fileID: 1433016630}
 --- !u!4 &1939077035
 Transform:
   m_ObjectHideFlags: 0
