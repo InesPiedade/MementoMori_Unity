@@ -14,12 +14,15 @@ public class Player : MonoBehaviour, IDamagable
     [SerializeField] private float jumpForce;
     [SerializeField] private float groundCheckDistance;
     [SerializeField] private float interactDistace = 4;
+
     private bool isInteracting;
+    private bool isGrounded;
+    private bool isWalking;
 
     [SerializeField] private Vector2 boxSize;
     private Vector2 raycastDirection;
 
-    private bool isGrounded;
+
 
     [Header("Game Objects")]
 
@@ -31,6 +34,9 @@ public class Player : MonoBehaviour, IDamagable
     [SerializeField] GameObject branch;
     [SerializeField] GameObject dog;
 
+    private Animator animator;
+
+
     public Rigidbody2D RigidBody { get => rigidBody; set => rigidBody = value; }
 
     #endregion
@@ -39,6 +45,7 @@ public class Player : MonoBehaviour, IDamagable
     {
         RigidBody = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
+        animator = GetComponent<Animator>();
     }
 
     private void Start()
@@ -49,6 +56,9 @@ public class Player : MonoBehaviour, IDamagable
     private void Update()
     {
         horizontalInput = Input.GetAxisRaw("Horizontal");
+
+        animator.SetFloat("MoveSpeed", Mathf.Abs(horizontalInput));
+        animator.SetBool("IsGround", isGrounded);
 
         RigidBody.velocity = new Vector2 (horizontalInput * movementSpeed, RigidBody.velocity.y);
 
@@ -61,15 +71,15 @@ public class Player : MonoBehaviour, IDamagable
             horizontalInput = 0;
         }
 
-        if(horizontalInput > 0)
+        if(horizontalInput < 0)
         {
             spriteRenderer.flipX = true;
-            raycastDirection = Vector2.right;
+            raycastDirection = Vector2.left;
         }
-        else if(horizontalInput < 0)
+        else if(horizontalInput > 0)
         {
             spriteRenderer.flipX = false;
-            raycastDirection = Vector2.left;
+            raycastDirection = Vector2.right;
         }
     }
 
