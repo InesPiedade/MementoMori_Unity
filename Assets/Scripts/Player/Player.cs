@@ -10,7 +10,7 @@ public class Player : MonoBehaviour, IDamagable
 
     [SerializeField] private int health = 100;
     [SerializeField] private float horizontalInput;
-    [SerializeField] private float movementSpeed;
+    [SerializeField] private float movementSpeed = 7;
     [SerializeField] private float jumpForce;
     [SerializeField] private float groundCheckDistance;
     [SerializeField] private float interactDistace = 4;
@@ -18,6 +18,7 @@ public class Player : MonoBehaviour, IDamagable
     private bool isInteracting;
     private bool isGrounded;
     private bool isWalking;
+    private bool isRunning;
 
     [SerializeField] private Vector2 boxSize;
     private Vector2 raycastDirection;
@@ -59,10 +60,12 @@ public class Player : MonoBehaviour, IDamagable
 
         animator.SetFloat("MoveSpeed", Mathf.Abs(horizontalInput));
         animator.SetBool("IsGround", isGrounded);
+        animator.SetBool("IsRunning", isRunning);
 
         RigidBody.velocity = new Vector2 (horizontalInput * movementSpeed, RigidBody.velocity.y);
 
         Jump();
+        Run();
         IsGround();
         InteractCheck();
 
@@ -85,9 +88,23 @@ public class Player : MonoBehaviour, IDamagable
 
     private void Jump()
     {
-        if(Input.GetKeyDown(KeyCode.Space) && IsGround())
+        if(Input.GetKeyDown(KeyCode.Space) && isGrounded)
         {
             RigidBody.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+        }
+    }
+
+    private void Run()
+    {
+        if(Input.GetKeyDown(KeyCode.LeftShift) && isGrounded)
+        {
+            isRunning = true;
+            movementSpeed = 15;
+        }
+        else if (Input.GetKeyUp(KeyCode.LeftShift))
+        {
+            isRunning = false;
+            movementSpeed = 7;
         }
     }
 
@@ -106,10 +123,12 @@ public class Player : MonoBehaviour, IDamagable
     {
         if (Physics2D.BoxCast(transform.position, boxSize, 0, -transform.up, groundCheckDistance, groundLayer))
         {
+            isGrounded = true;
             return true;
         }
         else
         {
+            isGrounded = false;
             return false;
         }
     }

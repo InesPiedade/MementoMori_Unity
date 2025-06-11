@@ -593,7 +593,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   minimumDistance: 30
-  speed: 10
+  speed: 8
   target: {fileID: 369894835}
 --- !u!50 &156051618
 Rigidbody2D:
@@ -1634,7 +1634,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 100
   horizontalInput: 0
-  movementSpeed: 10
+  movementSpeed: 7
   jumpForce: 7
   groundCheckDistance: 0.69
   interactDistace: 2.99
@@ -1709,7 +1709,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -3.2, y: -3.08, z: 0}
-  m_LocalScale: {x: 0.09, y: 0.09, z: 0.09}
+  m_LocalScale: {x: 0.08, y: 0.08, z: 0.08}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 519420032}
@@ -2341,8 +2341,8 @@ Transform:
   m_GameObject: {fileID: 519420028}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 22.11111, z: -111.1111}
-  m_LocalScale: {x: 11.11111, y: 11.11111, z: 11.11111}
+  m_LocalPosition: {x: 0, y: 24.875, z: -125}
+  m_LocalScale: {x: 12.5, y: 12.5, z: 12.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 369894835}
