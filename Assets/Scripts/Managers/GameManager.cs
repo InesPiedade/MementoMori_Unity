@@ -7,6 +7,7 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] private GameObject floatingPlatforms;
     [SerializeField] private GameObject shadowCave;
+    private Player player;
 
     private void Start()
     {
@@ -24,4 +25,16 @@ public class GameManager : MonoBehaviour
         floatingPlatforms.SetActive(false);
         shadowCave.SetActive(true);
     }
+
+    #region SaveData
+
+    public void SavePlayer()
+    {
+    }
+
+    public void LoadPlayer()
+    {
+    }
+
+    #endregion
 }

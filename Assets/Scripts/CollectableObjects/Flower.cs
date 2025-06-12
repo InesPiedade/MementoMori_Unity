@@ -11,6 +11,7 @@ public class Flower : MonoBehaviour, IInteractable
     [SerializeField] private GameObject wall;
     [SerializeField] private GameObject cutscene1;
     private UiManager uiManager;
+    private GameManager gameManager;
 
 
     #endregion
@@ -21,7 +22,7 @@ public class Flower : MonoBehaviour, IInteractable
     }
     public void Interact()
     {
-        
+
         Debug.Log("FLOWER");
 
         StartCoroutine(StartCutscene1());

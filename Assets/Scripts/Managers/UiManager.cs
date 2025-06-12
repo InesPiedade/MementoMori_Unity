@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,6 +9,7 @@ using UnityEngine.Video;
 public class UiManager : MonoBehaviour
 {
     public static UiManager instance;
+    public static event Action OnGameOver;
     public enum Screens { Pause, GameOver, Win, GameUi, Cutscene1 }
     private Dictionary<Screens, GameObject> organize;
 
@@ -21,6 +23,7 @@ public class UiManager : MonoBehaviour
     [SerializeField] private Image healthBar;
     [SerializeField] private GameObject pause;
     [SerializeField] private GameObject gameUi;
+    [SerializeField] private GameObject gameOver;
     [SerializeField] private GameObject cutscene1;
     [SerializeField] private VideoPlayer video1;
     [SerializeField] private GameObject flowerText;
@@ -52,6 +55,7 @@ public class UiManager : MonoBehaviour
         organize.Add(Screens.Pause, pause);
         organize.Add(Screens.GameUi, gameUi);
         organize.Add(Screens.Cutscene1, cutscene1);
+        organize.Add(Screens.GameOver, gameOver);
     }
 
     private void Update()
@@ -153,6 +157,16 @@ public class UiManager : MonoBehaviour
     {
         SceneManager.LoadScene("Game");
         Time.timeScale = 1f;
+    }
+
+    public void GameOver()
+    {
+        OnGameOver?.Invoke();
+        ShowPanel(Screens.GameOver);
+        gameUi.SetActive(false);
+        player.enabled = false;
+        Time.timeScale = 0f;
+        isPause = true;
     }
 
     public void ShowPanel(Screens panelType)

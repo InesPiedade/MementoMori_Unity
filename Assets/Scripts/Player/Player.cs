@@ -8,7 +8,7 @@ public class Player : MonoBehaviour, IDamagable
     #region Declarations
     [Header("References")]
 
-    [SerializeField] private int health = 100;
+    [SerializeField] public int health = 100;
     [SerializeField] private float horizontalInput;
     [SerializeField] private float movementSpeed = 7;
     [SerializeField] private float jumpForce;
@@ -20,6 +20,7 @@ public class Player : MonoBehaviour, IDamagable
     private bool isWalking;
     private bool isRunning;
     private bool isPower = true;
+    private bool isDead;
 
     [SerializeField] private Vector2 boxSize;
     private Vector2 raycastDirection;
@@ -164,6 +165,25 @@ public class Player : MonoBehaviour, IDamagable
         health -= damage;
         health = Mathf.Clamp(health, 0, 100);
         uiManager.HealthBar(health, 100);
+
+        if (health <= 0 && !isDead)
+        {
+            isDead = true;
+            StartCoroutine(Death());
+        }
+        else
+        {
+            isDead = false;
+        }
+    }
+
+    private IEnumerator Death()
+    {
+        //animator.SetTrigger("Death");
+
+        yield return new WaitForSeconds(0.5f);
+        uiManager.GameOver();
+        Time.timeScale = 0f;
     }
 
     public void DarkVisionOn()
