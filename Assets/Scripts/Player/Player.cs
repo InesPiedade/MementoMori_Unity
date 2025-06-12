@@ -19,6 +19,7 @@ public class Player : MonoBehaviour, IDamagable
     private bool isGrounded;
     private bool isWalking;
     private bool isRunning;
+    private bool isPower = true;
 
     [SerializeField] private Vector2 boxSize;
     private Vector2 raycastDirection;
@@ -30,12 +31,13 @@ public class Player : MonoBehaviour, IDamagable
     private Rigidbody2D rigidBody;
     public LayerMask groundLayer;
     public LayerMask interactLayer;
-    private UiManager uiManager;
     private SpriteRenderer spriteRenderer;
     [SerializeField] GameObject branch;
     [SerializeField] GameObject dog;
 
     private Animator animator;
+    private UiManager uiManager;
+    [SerializeField] private GameManager gameManager;
 
 
     public Rigidbody2D RigidBody { get => rigidBody; set => rigidBody = value; }
@@ -47,6 +49,7 @@ public class Player : MonoBehaviour, IDamagable
         RigidBody = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         animator = GetComponent<Animator>();
+        //gameManager = GetComponent<GameManager>();
     }
 
     private void Start()
@@ -62,33 +65,49 @@ public class Player : MonoBehaviour, IDamagable
         animator.SetBool("IsGround", isGrounded);
         animator.SetBool("IsRunning", isRunning);
 
-        RigidBody.velocity = new Vector2 (horizontalInput * movementSpeed, RigidBody.velocity.y);
+        RigidBody.velocity = new Vector2(horizontalInput * movementSpeed, RigidBody.velocity.y);
 
         Jump();
         Run();
         IsGround();
         InteractCheck();
 
+        if (Input.GetKeyDown(KeyCode.Q) && isPower == true)
+        {
+
+            if (isPower)
+            {
+                DarkVisionOn();
+                StartCoroutine(VisionCooldown());
+            }
+            else
+            {
+                DarkVisionOff();
+            }
+
+        }
+
         if (isInteracting)
         {
             horizontalInput = 0;
         }
 
-        if(horizontalInput < 0)
+        if (horizontalInput < 0)
         {
             spriteRenderer.flipX = true;
             raycastDirection = Vector2.left;
         }
-        else if(horizontalInput > 0)
+        else if (horizontalInput > 0)
         {
             spriteRenderer.flipX = false;
             raycastDirection = Vector2.right;
         }
     }
 
+    #region Actions
     private void Jump()
     {
-        if(Input.GetKeyDown(KeyCode.Space) && isGrounded)
+        if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
         {
             RigidBody.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
         }
@@ -96,7 +115,7 @@ public class Player : MonoBehaviour, IDamagable
 
     private void Run()
     {
-        if(Input.GetKeyDown(KeyCode.LeftShift) && isGrounded)
+        if (Input.GetKeyDown(KeyCode.LeftShift) && isGrounded)
         {
             isRunning = true;
             movementSpeed = 15;
@@ -107,6 +126,8 @@ public class Player : MonoBehaviour, IDamagable
             movementSpeed = 7;
         }
     }
+
+    #endregion
 
     private void InteractCheck()
     {
@@ -134,7 +155,7 @@ public class Player : MonoBehaviour, IDamagable
     }
     private void OnDrawGizmos()
     {
-        Gizmos.DrawWireCube(transform.position -transform.up * groundCheckDistance, boxSize);
+        Gizmos.DrawWireCube(transform.position - transform.up * groundCheckDistance, boxSize);
     }
 
 
@@ -145,11 +166,36 @@ public class Player : MonoBehaviour, IDamagable
         uiManager.HealthBar(health, 100);
     }
 
+    public void DarkVisionOn()
+    {
+        gameManager.VisionOn();
+        StartCoroutine(TimerDarkVision());
+    }
+
+    private IEnumerator TimerDarkVision()
+    {
+        yield return new WaitForSeconds(5f);
+        DarkVisionOff();
+    }
+
+    private IEnumerator VisionCooldown()
+    {
+        isPower = false;
+        yield return new WaitForSeconds(10f);
+        isPower = true;
+    }
+
+    public void DarkVisionOff()
+    {
+        gameManager.VisionOff();
+    }
+
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         GameObject branch = collision.GetComponent<GameObject>();
 
-        if(collision)
+        if (collision)
         {
             Debug.Log("A");
             dog.SetActive(true);

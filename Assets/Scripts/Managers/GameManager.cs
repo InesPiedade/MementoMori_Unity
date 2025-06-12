@@ -4,15 +4,24 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+
+    [SerializeField] private GameObject floatingPlatforms;
+    [SerializeField] private GameObject shadowCave;
+
+    private void Start()
     {
-        
+        floatingPlatforms.SetActive(false);
+        shadowCave.SetActive(true);
+    }
+    public void VisionOn()
+    {
+        floatingPlatforms.SetActive(true);
+        shadowCave.SetActive(false);
     }
 
-    // Update is called once per frame
-    void Update()
+    public void VisionOff()
     {
-        
+        floatingPlatforms.SetActive(false);
+        shadowCave.SetActive(true);
     }
 }
