@@ -25,16 +25,4 @@ public class GameManager : MonoBehaviour
         floatingPlatforms.SetActive(false);
         shadowCave.SetActive(true);
     }
-
-    #region SaveData
-
-    public void SavePlayer()
-    {
-    }
-
-    public void LoadPlayer()
-    {
-    }
-
-    #endregion
 }

@@ -8,7 +8,7 @@ public class Player : MonoBehaviour, IDamagable
     #region Declarations
     [Header("References")]
 
-    [SerializeField] public int health = 100;
+    [SerializeField] private int health = 100;
     [SerializeField] private float horizontalInput;
     [SerializeField] private float movementSpeed = 7;
     [SerializeField] private float jumpForce;
