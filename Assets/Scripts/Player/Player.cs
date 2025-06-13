@@ -39,6 +39,7 @@ public class Player : MonoBehaviour, IDamagable
     private Animator animator;
     private UiManager uiManager;
     [SerializeField] private GameManager gameManager;
+    [SerializeField] private SaveController saveController;
 
 
     public Rigidbody2D RigidBody { get => rigidBody; set => rigidBody = value; }
@@ -50,7 +51,6 @@ public class Player : MonoBehaviour, IDamagable
         RigidBody = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         animator = GetComponent<Animator>();
-        //gameManager = GetComponent<GameManager>();
     }
 
     private void Start()
@@ -217,8 +217,9 @@ public class Player : MonoBehaviour, IDamagable
 
         if (collision)
         {
-            Debug.Log("A");
+            Debug.Log("DOG");
             dog.SetActive(true);
+            saveController.SaveGame();
         }
         else
         {

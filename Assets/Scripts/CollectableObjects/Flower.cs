@@ -12,6 +12,7 @@ public class Flower : MonoBehaviour, IInteractable
     [SerializeField] private GameObject cutscene1;
     private UiManager uiManager;
     private GameManager gameManager;
+    [SerializeField] private SaveController saveController;
 
 
     #endregion
@@ -22,11 +23,10 @@ public class Flower : MonoBehaviour, IInteractable
     }
     public void Interact()
     {
-
         Debug.Log("FLOWER");
 
         StartCoroutine(StartCutscene1());
-
+        saveController.SaveGame();
         //Update inventory 
     }
 
@@ -42,5 +42,6 @@ public class Flower : MonoBehaviour, IInteractable
         uiManager.EndCutscene1();
         Destroy(gameObject);
         wall.SetActive(false);
+
     }
 }

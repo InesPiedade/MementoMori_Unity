@@ -46,8 +46,6 @@ public class UiManager : MonoBehaviour
 
     private void Start()
     {
-        //altarText.SetActive(false);
-        //itemFlowerText.SetActive(false);
 
         player = GameObject.FindObjectOfType<Player>();
 
@@ -56,6 +54,18 @@ public class UiManager : MonoBehaviour
         organize.Add(Screens.GameUi, gameUi);
         organize.Add(Screens.Cutscene1, cutscene1);
         organize.Add(Screens.GameOver, gameOver);
+
+        //SaveData data = saveController.LoadGame();
+        ////saveController.SaveGame(newData);
+
+        //if(data != null)
+        //{
+        //    player.transform.position = data.playerPosition;
+        //}
+        //else
+        //{
+        //    Debug.Log("No Save Found, STARTING DEFAULT");
+        //}
     }
 
     private void Update()
@@ -153,11 +163,18 @@ public class UiManager : MonoBehaviour
         healthBar.fillAmount = (float)health / (float)maxHealth;
     }
 
-    public void StartGame()
+    public void LoadLevel()
     {
         SceneManager.LoadScene("Game");
         Time.timeScale = 1f;
     }
+
+    public void StartNewGame()
+    {
+        SceneManager.LoadScene("Game");
+        Time.timeScale = 1f;
+    }
+
 
     public void GameOver()
     {

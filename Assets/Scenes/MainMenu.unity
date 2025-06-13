@@ -122,6 +122,50 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &148724664
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 148724665}
+  - component: {fileID: 148724666}
+  m_Layer: 0
+  m_Name: SaveController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &148724665
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 148724664}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 2.002302, y: 4.645776, z: -8.596775}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &148724666
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 148724664}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0b52e19e4c43fd0458e307fca29d5c75, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &172214219
 GameObject:
   m_ObjectHideFlags: 0
@@ -644,6 +688,13 @@ MonoBehaviour:
   healthBar: {fileID: 0}
   pause: {fileID: 0}
   gameUi: {fileID: 0}
+  gameOver: {fileID: 0}
+  cutscene1: {fileID: 0}
+  video1: {fileID: 0}
+  flowerText: {fileID: 0}
+  altarText: {fileID: 0}
+  itemFlowerText: {fileID: 0}
+  saveController: {fileID: 148724666}
 --- !u!4 &828841423
 Transform:
   m_ObjectHideFlags: 0
@@ -2397,7 +2448,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 828841422}
         m_TargetAssemblyTypeName: UiManager, Assembly-CSharp
-        m_MethodName: StartGame
+        m_MethodName: StartNewGame
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3027,3 +3078,4 @@ SceneRoots:
   - {fileID: 499454997}
   - {fileID: 172214222}
   - {fileID: 828841423}
+  - {fileID: 148724665}
