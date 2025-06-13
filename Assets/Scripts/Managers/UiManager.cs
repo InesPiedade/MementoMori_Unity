@@ -10,22 +10,28 @@ public class UiManager : MonoBehaviour
 {
     public static UiManager instance;
     public static event Action OnGameOver;
-    public enum Screens { Pause, GameOver, Win, GameUi, Cutscene1 }
+    public enum Screens { Pause, GameOver, Win, GameUi, Cutscene1, Cutscene2}
     private Dictionary<Screens, GameObject> organize;
 
     #region Declarations
     [Header("References")]
+
     private bool isPause = false;
 
 
     [Header("Game Objects")]
     private Player player;
+
     [SerializeField] private Image healthBar;
+
     [SerializeField] private GameObject pause;
     [SerializeField] private GameObject gameUi;
     [SerializeField] private GameObject gameOver;
+
     [SerializeField] private GameObject cutscene1;
+    [SerializeField] private GameObject cutscene2;
     [SerializeField] private VideoPlayer video1;
+
     [SerializeField] private GameObject flowerText;
     [SerializeField] private GameObject altarText;
     [SerializeField] private GameObject itemFlowerText;
@@ -46,26 +52,14 @@ public class UiManager : MonoBehaviour
 
     private void Start()
     {
-
         player = GameObject.FindObjectOfType<Player>();
 
         organize = new Dictionary<Screens, GameObject>();
         organize.Add(Screens.Pause, pause);
         organize.Add(Screens.GameUi, gameUi);
         organize.Add(Screens.Cutscene1, cutscene1);
+        organize.Add(Screens.Cutscene2, cutscene2);
         organize.Add(Screens.GameOver, gameOver);
-
-        //SaveData data = saveController.LoadGame();
-        ////saveController.SaveGame(newData);
-
-        //if(data != null)
-        //{
-        //    player.transform.position = data.playerPosition;
-        //}
-        //else
-        //{
-        //    Debug.Log("No Save Found, STARTING DEFAULT");
-        //}
     }
 
     private void Update()
@@ -127,18 +121,33 @@ public class UiManager : MonoBehaviour
         isPause = true;
     }
 
+    public void StartCutscene2()
+    {
+        ShowPanel(Screens.Cutscene2);
+        video1.Play();
+        gameUi.SetActive(false);
+        player.enabled = false;
+        isPause = true;
+    }
+
     /// ///////////////
 
     public void EndCutscene1()
     {
         video1.Pause();
-        cutscene1.SetActive(false);
+        cutscene2.SetActive(false);
         ShowPanel(Screens.GameUi);
         player.enabled = true;
         isPause = false;
-        //altarText.SetActive(true);
-        //flowerText.SetActive(false);
-        //itemFlowerText.SetActive(true);
+    }
+
+    public void EndCutscene2()
+    {
+        video1.Pause();
+        cutscene2.SetActive(false);
+        ShowPanel(Screens.GameUi);
+        player.enabled = true;
+        isPause = false;
     }
 
     /// ///////////////
@@ -152,27 +161,9 @@ public class UiManager : MonoBehaviour
         SceneManager.LoadScene("Options");
     }
 
-    public void Quit()
-    {
-        Debug.Log("Exit");
-        Application.Quit();
-    }
-
     public void HealthBar(int health, int maxHealth)
     {
         healthBar.fillAmount = (float)health / (float)maxHealth;
-    }
-
-    public void LoadLevel()
-    {
-        SceneManager.LoadScene("Game");
-        Time.timeScale = 1f;
-    }
-
-    public void StartNewGame()
-    {
-        SceneManager.LoadScene("Game");
-        Time.timeScale = 1f;
     }
 
 

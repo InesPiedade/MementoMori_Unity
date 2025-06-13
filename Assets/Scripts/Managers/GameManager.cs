@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -24,5 +25,23 @@ public class GameManager : MonoBehaviour
     {
         floatingPlatforms.SetActive(false);
         shadowCave.SetActive(true);
+    }
+
+    public void LoadLevel()
+    {
+        SceneManager.LoadScene("Game");
+        Time.timeScale = 1f;
+    }
+
+    public void StartNewGame()
+    {
+        SceneManager.LoadScene("Game");
+        Time.timeScale = 1f;
+    }
+
+    public void Quit()
+    {
+        Debug.Log("Exit");
+        Application.Quit();
     }
 }
