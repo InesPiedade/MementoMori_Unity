@@ -10,7 +10,7 @@ public class UiManager : MonoBehaviour
 {
     public static UiManager instance;
     public static event Action OnGameOver;
-    public enum Screens { Pause, GameOver, Win, GameUi, Cutscene1, Cutscene2}
+    public enum Screens { Pause, GameOver, Win, GameUi, Inventory, Cutscene1, Cutscene2}
     private Dictionary<Screens, GameObject> organize;
 
     #region Declarations
@@ -27,6 +27,7 @@ public class UiManager : MonoBehaviour
     [SerializeField] private GameObject pause;
     [SerializeField] private GameObject gameUi;
     [SerializeField] private GameObject gameOver;
+    [SerializeField] private GameObject inventory;
 
     [SerializeField] private GameObject cutscene1;
     [SerializeField] private GameObject cutscene2;
@@ -57,6 +58,7 @@ public class UiManager : MonoBehaviour
         organize = new Dictionary<Screens, GameObject>();
         organize.Add(Screens.Pause, pause);
         organize.Add(Screens.GameUi, gameUi);
+        organize.Add(Screens.Inventory, inventory);
         organize.Add(Screens.Cutscene1, cutscene1);
         organize.Add(Screens.Cutscene2, cutscene2);
         organize.Add(Screens.GameOver, gameOver);
@@ -77,6 +79,20 @@ public class UiManager : MonoBehaviour
                 Pause();
             }
         }
+
+        if (Input.GetKeyDown(KeyCode.Tab))
+        {
+            if (isPause)
+            {
+                CloseInventory();
+            }
+            else
+            {
+                OpenInventory();
+            }
+        }
+
+
         if (cutscene1.activeSelf)
         {
             if (!video1.isPlaying)
@@ -111,6 +127,24 @@ public class UiManager : MonoBehaviour
         isPause = true;
     }
 
+    public void OpenInventory()
+    {
+        ShowPanel(Screens.Inventory);
+        gameUi.SetActive(false);
+        player.enabled = false;
+        Time.timeScale = 0f;
+        isPause = true;
+    }
+
+    public void CloseInventory()
+    {
+        pause.SetActive(false);
+        ShowPanel(Screens.GameUi);
+        player.enabled = true;
+        Time.timeScale = 1f;
+        isPause = false;
+    }
+
     /// ////////////////////
     public void StartCutscene1()
     {
@@ -135,7 +169,7 @@ public class UiManager : MonoBehaviour
     public void EndCutscene1()
     {
         video1.Pause();
-        cutscene2.SetActive(false);
+        cutscene1.SetActive(false);
         ShowPanel(Screens.GameUi);
         player.enabled = true;
         isPause = false;

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Burst.CompilerServices;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -38,6 +39,8 @@ public class Player : MonoBehaviour, IDamagable
 
     private Animator animator;
     private UiManager uiManager;
+    private InventoryController inventoryController;
+    private Flower flowerScript;
     [SerializeField] private GameManager gameManager;
     [SerializeField] private SaveController saveController;
 
@@ -56,6 +59,7 @@ public class Player : MonoBehaviour, IDamagable
     private void Start()
     {
         uiManager = UiManager.instance;
+        inventoryController = FindAnyObjectByType<InventoryController>();
     }
 
     private void Update()
@@ -135,9 +139,25 @@ public class Player : MonoBehaviour, IDamagable
         Debug.DrawRay(transform.position, raycastDirection * interactDistace, Color.green);
         RaycastHit2D hit = Physics2D.Raycast(transform.position, raycastDirection, interactDistace, interactLayer);
 
-        if (hit && Input.GetKeyDown(KeyCode.E))
-        {
-            hit.collider.gameObject.GetComponent<IInteractable>().Interact();
+        if (hit.collider != null && Input.GetKeyDown(KeyCode.E) && hit.collider.CompareTag("Item"))
+        {           
+            Item item = hit.collider.GetComponent<Item>();
+
+            if (item != null)
+            {
+                Debug.Log("Item Added");
+                //add to inventory
+                bool itemAdded = inventoryController.AddItem(hit.collider.gameObject);
+
+                if (itemAdded)
+                {
+                    IInteractable interactable = hit.collider.GetComponent<IInteractable>();
+                    if (interactable != null)
+                    {
+                        interactable.Interact();
+                    }
+                }
+            }
         }
     }
 
@@ -215,6 +235,7 @@ public class Player : MonoBehaviour, IDamagable
     {
         GameObject branch = collision.GetComponent<GameObject>();
 
+
         if (collision)
         {
             Debug.Log("DOG");
@@ -225,5 +246,18 @@ public class Player : MonoBehaviour, IDamagable
         {
             dog.SetActive(false);
         }
+
+        //if (collision.CompareTag("Item"))
+        //{
+        //    Item item = collision.GetComponent<Item>();
+        //    if (item != null)
+        //    {
+        //        bool itemAdded = inventoryController.AddItem(collision.gameObject);
+        //        if (itemAdded)
+        //        {
+        //            gameObject.GetComponent<IInteractable>().Interact();
+        //        }
+        //    }
+        //}
     }
 }

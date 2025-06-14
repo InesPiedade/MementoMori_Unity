@@ -40,7 +40,7 @@ public class Flower : MonoBehaviour, IInteractable
     {
         yield return new WaitForSeconds(4f);
         uiManager.EndCutscene1();
-        Destroy(gameObject);
+        gameObject.SetActive(false);
         wall.SetActive(false);
 
     }

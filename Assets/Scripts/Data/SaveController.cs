@@ -8,6 +8,7 @@ public class SaveController : MonoBehaviour
 {
     public static SaveController instance;
     private string saveLocation;
+    private InventoryController inventoryController;
 
     private void awake()
     {
@@ -25,6 +26,8 @@ public class SaveController : MonoBehaviour
     {
         saveLocation = Path.Combine(Application.persistentDataPath, "saveData.json");
 
+        inventoryController = GetComponent<InventoryController>();
+
         LoadGame();
     }
 
@@ -33,6 +36,7 @@ public class SaveController : MonoBehaviour
         SaveData saveData = new SaveData
         {
             playerPosition = GameObject.FindGameObjectWithTag("Player").transform.position,
+            inventorySaveData = inventoryController.GetInventoryItems()
         };
 
         File.WriteAllText(saveLocation, JsonUtility.ToJson(saveData));
@@ -44,7 +48,11 @@ public class SaveController : MonoBehaviour
         if(File.Exists(saveLocation))
         {
             SaveData saveData = JsonUtility.FromJson<SaveData>(File.ReadAllText(saveLocation));
+
             GameObject.FindGameObjectWithTag("Player").transform.position = saveData.playerPosition;
+
+            inventoryController.SetInventoryItems(saveData.inventorySaveData);
+
             Debug.Log("GameLoaded");
         }
         else
