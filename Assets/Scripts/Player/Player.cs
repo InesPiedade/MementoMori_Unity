@@ -33,7 +33,8 @@ public class Player : MonoBehaviour, IDamagable
 
     private Rigidbody2D rigidBody;
     public LayerMask groundLayer;
-    public LayerMask interactLayer;
+    //public LayerMask interactLayer;
+    public LayerMask UILayer;
     private SpriteRenderer spriteRenderer;
     [SerializeField] GameObject branch;
     [SerializeField] GameObject dog;
@@ -144,7 +145,7 @@ public class Player : MonoBehaviour, IDamagable
     private void InteractCheck()
     {
         Debug.DrawRay(transform.position, raycastDirection * interactDistance, Color.green);
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, raycastDirection, interactDistance, interactLayer);
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, raycastDirection, interactDistance, UILayer);
 
         if (hit.collider != null && Input.GetKeyDown(KeyCode.E) && hit.collider.CompareTag("Item"))
         {           
