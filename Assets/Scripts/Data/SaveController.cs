@@ -10,7 +10,7 @@ public class SaveController : MonoBehaviour
     private string saveLocation;
     private InventoryController inventoryController;
 
-    private void awake()
+    private void Awake()
     {
         if (instance == null)
         {

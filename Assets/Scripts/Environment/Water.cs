@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class Water : MonoBehaviour
 {
-    private void OnTriggerEnter2D(Collider2D collision)
+
+    private void OnCollisionEnter2D(Collision2D waterCollision)
     {
-        Player player = collision.gameObject.GetComponent<Player>();
+        Player player = waterCollision.gameObject.GetComponent<Player>();
 
         if (player != null)
         {

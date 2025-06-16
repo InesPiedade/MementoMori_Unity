@@ -689,12 +689,13 @@ MonoBehaviour:
   pause: {fileID: 0}
   gameUi: {fileID: 0}
   gameOver: {fileID: 0}
+  inventory: {fileID: 0}
   cutscene1: {fileID: 0}
+  cutscene2: {fileID: 0}
   video1: {fileID: 0}
   flowerText: {fileID: 0}
   altarText: {fileID: 0}
   itemFlowerText: {fileID: 0}
-  saveController: {fileID: 148724666}
 --- !u!4 &828841423
 Transform:
   m_ObjectHideFlags: 0
@@ -2448,7 +2449,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 828841422}
         m_TargetAssemblyTypeName: UiManager, Assembly-CSharp
-        m_MethodName: StartNewGame
+        m_MethodName: NewGame
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

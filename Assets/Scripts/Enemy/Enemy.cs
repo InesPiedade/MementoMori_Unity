@@ -23,6 +23,7 @@ public class Enemy : MonoBehaviour
     private void Start()
     {
         target = GameObject.Find("Player").transform;
+        gameObject.SetActive(false);
     }
 
     private void Update()

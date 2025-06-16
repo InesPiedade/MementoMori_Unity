@@ -235,7 +235,6 @@ public class Player : MonoBehaviour, IDamagable
     {
         GameObject branch = collision.GetComponent<GameObject>();
 
-
         if (collision)
         {
             Debug.Log("DOG");
