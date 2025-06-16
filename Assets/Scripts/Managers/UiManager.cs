@@ -32,6 +32,7 @@ public class UiManager : MonoBehaviour
     [SerializeField] private GameObject cutscene1;
     [SerializeField] private GameObject cutscene2;
     [SerializeField] private VideoPlayer video1;
+    [SerializeField] private VideoPlayer video2;
 
     [SerializeField] private GameObject flowerText;
     [SerializeField] private GameObject altarText;
@@ -158,7 +159,7 @@ public class UiManager : MonoBehaviour
     public void StartCutscene2()
     {
         ShowPanel(Screens.Cutscene2);
-        video1.Play();
+        video2.Play();
         gameUi.SetActive(false);
         player.enabled = false;
         isPause = true;
@@ -177,7 +178,7 @@ public class UiManager : MonoBehaviour
 
     public void EndCutscene2()
     {
-        video1.Pause();
+        video2.Pause();
         cutscene2.SetActive(false);
         ShowPanel(Screens.GameUi);
         player.enabled = true;

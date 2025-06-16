@@ -14,12 +14,13 @@ public class Player : MonoBehaviour, IDamagable
     [SerializeField] private float movementSpeed = 7;
     [SerializeField] private float jumpForce;
     [SerializeField] private float groundCheckDistance;
-    [SerializeField] private float interactDistace = 4;
+    [SerializeField] private float interactDistance = 4;
 
     private bool isInteracting;
     private bool isGrounded;
     private bool isWalking;
     private bool isRunning;
+    private bool isSiting;
     private bool isPower = true;
     private bool isDead;
 
@@ -118,6 +119,12 @@ public class Player : MonoBehaviour, IDamagable
         }
     }
 
+    public void Sit()
+    {
+        //if(Input.GetKeyDown(KeyCode.E))
+        animator.SetTrigger("Sit");
+    }
+
     private void Run()
     {
         if (Input.GetKeyDown(KeyCode.LeftShift) && isGrounded)
@@ -136,8 +143,8 @@ public class Player : MonoBehaviour, IDamagable
 
     private void InteractCheck()
     {
-        Debug.DrawRay(transform.position, raycastDirection * interactDistace, Color.green);
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, raycastDirection, interactDistace, interactLayer);
+        Debug.DrawRay(transform.position, raycastDirection * interactDistance, Color.green);
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, raycastDirection, interactDistance, interactLayer);
 
         if (hit.collider != null && Input.GetKeyDown(KeyCode.E) && hit.collider.CompareTag("Item"))
         {           

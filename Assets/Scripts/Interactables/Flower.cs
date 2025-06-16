@@ -4,11 +4,12 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.Video;
 
-public class Altar : MonoBehaviour, IInteractable
+public class Flower : MonoBehaviour, IInteractable
 {
     #region Declarations
     [Header("Game Objects")]
-    [SerializeField] private GameObject cutscene2;
+    [SerializeField] private GameObject wall;
+    //[SerializeField] private GameObject cutscene1;
     private UiManager uiManager;
     private GameManager gameManager;
     [SerializeField] private SaveController saveController;
@@ -22,30 +23,25 @@ public class Altar : MonoBehaviour, IInteractable
     }
     public void Interact()
     {
-        Debug.Log("ALTAR");
+        Debug.Log("FLOWER");
 
-        StartCoroutine(SitAnimation());
-        //saveController.SaveGame();
+        StartCoroutine(StartCutscene1());
+        saveController.SaveGame();
         //Update inventory 
     }
-    private IEnumerator SitAnimation()
-    {
-        //animator sit 
-        yield return new WaitForSeconds(2f);
-        StartCoroutine(StartCutscene2());
-    }
 
-    private IEnumerator StartCutscene2()
+    private IEnumerator StartCutscene1()
     {
         yield return new WaitForSeconds(0.5f);
-        uiManager.StartCutscene2();
-        StartCoroutine(EndCutscene2());
+        uiManager.StartCutscene1();
+        StartCoroutine(EndCutscene1());
     }
-    private IEnumerator EndCutscene2()
+    private IEnumerator EndCutscene1()
     {
         yield return new WaitForSeconds(4f);
-        uiManager.EndCutscene2();
-        //ui manager, credits
+        uiManager.EndCutscene1();
+        gameObject.SetActive(false);
+        wall.SetActive(false);
 
     }
 }

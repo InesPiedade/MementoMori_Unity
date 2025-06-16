@@ -1223,11 +1223,11 @@ Transform:
   m_GameObject: {fileID: 221973653}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 761.7, y: -142.31, z: 0}
-  m_LocalScale: {x: 0.45999998, y: 0.45999998, z: 0.45999998}
+  m_LocalPosition: {x: -2.4610305, y: -0.023867922, z: 0}
+  m_LocalScale: {x: 0.35113966, y: 0.1839304, z: 0.45999998}
   m_ConstrainProportionsScale: 1
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 287532757}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &227944641
 GameObject:
@@ -1472,7 +1472,9 @@ Transform:
   m_LocalPosition: {x: 764.924, y: -142.2503, z: 0}
   m_LocalScale: {x: 1.31002, y: 2.500946, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 221973655}
+  - {fileID: 1254536455}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &287532758
@@ -1487,8 +1489,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2362f80c124b23c45836d7af9f44479e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cutscene2: {fileID: 1794353483}
-  saveController: {fileID: 1833015707}
+  player: {fileID: 369894833}
 --- !u!1 &296198362
 GameObject:
   m_ObjectHideFlags: 0
@@ -2356,7 +2357,7 @@ MonoBehaviour:
   movementSpeed: 7
   jumpForce: 7
   groundCheckDistance: 0.69
-  interactDistace: 2.99
+  interactDistance: 4
   boxSize: {x: 2.76, y: 0.16}
   groundLayer:
     serializedVersion: 2
@@ -3752,7 +3753,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 287532757}
     m_Modifications:
     - target: {fileID: 5053588248920802473, guid: c577d8e68104e2f4fbd3a0733e3953c3, type: 3}
       propertyPath: notify
@@ -3761,18 +3762,34 @@ PrefabInstance:
     - target: {fileID: 5053588248920802473, guid: c577d8e68104e2f4fbd3a0733e3953c3, type: 3}
       propertyPath: interactAction.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
+      objectReference: {fileID: 287532758}
+    - target: {fileID: 5053588248920802473, guid: c577d8e68104e2f4fbd3a0733e3953c3, type: 3}
+      propertyPath: interactAction.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Interact
+      objectReference: {fileID: 0}
+    - target: {fileID: 5053588248920802473, guid: c577d8e68104e2f4fbd3a0733e3953c3, type: 3}
+      propertyPath: interactAction.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Altar, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 5480347836072933888, guid: c577d8e68104e2f4fbd3a0733e3953c3, type: 3}
       propertyPath: m_Name
       value: CircleInteractRange
       objectReference: {fileID: 0}
     - target: {fileID: 5952417839102581192, guid: c577d8e68104e2f4fbd3a0733e3953c3, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.76334715
+      objectReference: {fileID: 0}
+    - target: {fileID: 5952417839102581192, guid: c577d8e68104e2f4fbd3a0733e3953c3, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.3998487
+      objectReference: {fileID: 0}
+    - target: {fileID: 5952417839102581192, guid: c577d8e68104e2f4fbd3a0733e3953c3, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 761.68
+      value: -2.4763124
       objectReference: {fileID: 0}
     - target: {fileID: 5952417839102581192, guid: c577d8e68104e2f4fbd3a0733e3953c3, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -143.31
+      value: -0.42371663
       objectReference: {fileID: 0}
     - target: {fileID: 5952417839102581192, guid: c577d8e68104e2f4fbd3a0733e3953c3, type: 3}
       propertyPath: m_LocalPosition.z
@@ -9351,6 +9368,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &1254536455 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5952417839102581192, guid: c577d8e68104e2f4fbd3a0733e3953c3, type: 3}
+  m_PrefabInstance: {fileID: 555106005}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1291940477
 GameObject:
   m_ObjectHideFlags: 0
@@ -14410,8 +14432,9 @@ MonoBehaviour:
   gameOver: {fileID: 1924239483}
   inventory: {fileID: 592245099}
   cutscene1: {fileID: 1408215321}
-  cutscene2: {fileID: 0}
+  cutscene2: {fileID: 1764658208}
   video1: {fileID: 1640513092}
+  video2: {fileID: 1794353484}
   flowerText: {fileID: 923733538}
   altarText: {fileID: 2133900221}
   itemFlowerText: {fileID: 1433016630}
@@ -15781,8 +15804,6 @@ SceneRoots:
   - {fileID: 1066837813}
   - {fileID: 1932607526}
   - {fileID: 287532757}
-  - {fileID: 221973655}
-  - {fileID: 555106005}
   - {fileID: 1428852190}
   - {fileID: 128879862}
   - {fileID: 369894835}
