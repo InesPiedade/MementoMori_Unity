@@ -131,7 +131,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 148724665}
-  - component: {fileID: 148724666}
   m_Layer: 0
   m_Name: SaveController
   m_TagString: Untagged
@@ -154,18 +153,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &148724666
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 148724664}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0b52e19e4c43fd0458e307fca29d5c75, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &172214219
 GameObject:
   m_ObjectHideFlags: 0
@@ -693,6 +680,7 @@ MonoBehaviour:
   cutscene1: {fileID: 0}
   cutscene2: {fileID: 0}
   video1: {fileID: 0}
+  video2: {fileID: 0}
   flowerText: {fileID: 0}
   altarText: {fileID: 0}
   itemFlowerText: {fileID: 0}
@@ -2355,7 +2343,6 @@ GameObject:
   - component: {fileID: 1735035155}
   - component: {fileID: 1735035154}
   - component: {fileID: 1735035153}
-  - component: {fileID: 1735035152}
   m_Layer: 5
   m_Name: NewGame
   m_TagString: Untagged
@@ -2382,27 +2369,6 @@ RectTransform:
   m_AnchoredPosition: {x: -162.2, y: -115.99999}
   m_SizeDelta: {x: 234, y: 58}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!95 &1735035152
-Animator:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1735035150}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 5e8c5c729d7b6a946b9903c985ab519e, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!114 &1735035153
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2447,14 +2413,14 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 828841422}
-        m_TargetAssemblyTypeName: UiManager, Assembly-CSharp
-        m_MethodName: NewGame
-        m_Mode: 1
+      - m_Target: {fileID: 148724664}
+        m_TargetAssemblyTypeName: SaveController, Assembly-CSharp
+        m_MethodName: 
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 1
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0

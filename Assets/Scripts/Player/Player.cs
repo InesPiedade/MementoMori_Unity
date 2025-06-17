@@ -43,8 +43,10 @@ public class Player : MonoBehaviour, IDamagable
     private UiManager uiManager;
     private InventoryController inventoryController;
     private Flower flowerScript;
+    private DarkVisionAbility darkVisionAbility;
     [SerializeField] private GameManager gameManager;
     [SerializeField] private SaveController saveController;
+
 
 
     public Rigidbody2D RigidBody { get => rigidBody; set => rigidBody = value; }
@@ -222,6 +224,7 @@ public class Player : MonoBehaviour, IDamagable
 
     private IEnumerator TimerDarkVision()
     {
+        darkVisionAbility.Timer();
         yield return new WaitForSeconds(5f);
         DarkVisionOff();
     }

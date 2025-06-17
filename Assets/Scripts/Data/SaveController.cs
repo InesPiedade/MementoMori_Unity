@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 using UnityEngine;
 using System.IO;
 
@@ -67,14 +68,31 @@ public class SaveController : MonoBehaviour
         return Application.persistentDataPath + $"/save{slot}.json";
     }
 
+    public void ResetGame()
+    {
+        SceneManager.LoadScene("Game");
+
+        player = gameObject.GetComponent<Player>();
+        player.transform.position = new Vector3(0f, 0f, 0f);
+
+        inventoryController.ClearInventory();
+
+        SaveGame();
+
+        Debug.Log("New Game");
+    }
+
     //public static void ClearSave(int slot = 1)
     //{
     //    string path = Application.persistentDataPath + $"/save{slot}.json";
 
-    //    if(File.Exists(path))
+    //    if (File.Exists(path))
     //    {
     //        File.Delete(path);
     //        Debug.Log("Save File DELETED");
     //    }
+
+    //    SceneManager.LoadScene("Game");
+
     //}
 }
