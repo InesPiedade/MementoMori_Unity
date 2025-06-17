@@ -70,12 +70,12 @@ public class SaveController : MonoBehaviour
 
     public void ResetGame()
     {
-        SceneManager.LoadScene("Game");
+        //SceneManager.LoadScene("Game");
 
-        player = gameObject.GetComponent<Player>();
-        player.transform.position = new Vector3(0f, 0f, 0f);
+        Player player = gameObject.GetComponent<Player>();
+        player.transform.position = new Vector3 (-2.56f, -3.2f, 0f);
 
-        inventoryController.ClearInventory();
+        //inventoryController.ClearInventory();
 
         SaveGame();
 

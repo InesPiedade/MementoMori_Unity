@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject floatingPlatforms;
     [SerializeField] private GameObject shadowCave;
     private Player player;
+    private SaveController saveController;
 
 
     private void Start()
@@ -34,11 +35,11 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 1f;
     }
 
-    //public void StartNewGame()
-    //{
-    //    SceneManager.LoadScene("Game");
-    //    Time.timeScale = 1f;
-    //}
+    public void StartNewGame()
+    {
+        SceneManager.LoadScene("Game");
+        saveController.ResetGame();
+    }
 
     public void Quit()
     {
