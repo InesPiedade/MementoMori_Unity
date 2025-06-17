@@ -36,6 +36,8 @@ public class UiManager : MonoBehaviour
 
     [SerializeField] private GameObject flowerText;
     [SerializeField] private GameObject altarText;
+    [SerializeField] private GameObject dogText;
+    [SerializeField] private GameObject caveText;
     [SerializeField] private GameObject itemFlowerText;
 
     #endregion
@@ -63,6 +65,11 @@ public class UiManager : MonoBehaviour
         organize.Add(Screens.Cutscene1, cutscene1);
         organize.Add(Screens.Cutscene2, cutscene2);
         organize.Add(Screens.GameOver, gameOver);
+
+        flowerText.SetActive(true);
+        dogText.SetActive(false);
+        caveText.SetActive(false);
+        altarText.SetActive(false);
     }
 
     private void Update()
@@ -200,8 +207,6 @@ public class UiManager : MonoBehaviour
     {
         healthBar.fillAmount = (float)health / (float)maxHealth;
     }
-
-
     public void GameOver()
     {
         OnGameOver?.Invoke();
@@ -222,5 +227,34 @@ public class UiManager : MonoBehaviour
         {
             organize[panelType].SetActive(true);
         }
+    }
+
+    public void ObjectiveFlower()
+    {
+        flowerText.SetActive(true);
+        dogText.SetActive(false);
+        caveText.SetActive(false);
+        altarText.SetActive(false);
+    }
+    public void ObjectiveDog()
+    {
+        dogText.SetActive(true);
+        caveText.SetActive(false);
+        altarText.SetActive(false);
+        flowerText.SetActive(false);
+    }
+    public void ObjectiveCave()
+    {
+        caveText.SetActive(true);
+        altarText.SetActive(false);
+        flowerText.SetActive(false);
+        dogText.SetActive(false);
+    }
+    public void ObjectiveAltar()
+    {
+        altarText.SetActive(true);
+        caveText.SetActive(false);
+        dogText.SetActive (false);
+        flowerText.SetActive (false);
     }
 }

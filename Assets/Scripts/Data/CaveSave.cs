@@ -5,14 +5,16 @@ using UnityEngine;
 public class CaveSave : MonoBehaviour
 {
     [SerializeField] private SaveController saveController;
+    [SerializeField] private UiManager uiManager;
 
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerEnter2D(Collider2D collisionCave)
     {
-        Player player = collision.transform.GetComponent<Player>();
+        Player player = collisionCave.transform.GetComponent<Player>();
 
-        if (collision)
+        if (collisionCave)
         {
+            uiManager.ObjectiveAltar();
             saveController.SaveGame();
         }
     }

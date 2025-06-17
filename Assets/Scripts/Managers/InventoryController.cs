@@ -96,18 +96,19 @@ public class InventoryController : MonoBehaviour
         }
     }
 
-    //public void ClearInventory()
-    //{
-    //    foreach (Transform slotTransform in inventoryPanel.transform)
-    //    {
-    //        Slot slot = slotTransform.GetComponent<slot>();
-    //        if (slot != null && slotcurrentItem != null)
-    //        {
-    //            Destroy(slot.currentItem);
-    //            slot.currentItem = null;
-    //        }
-    //    }
+    public void ClearInventory()
+    {
+        foreach (Transform child in inventoryPanel.transform)
+        {
+            Destroy(child.gameObject);
+        }
 
-    //    Debug.Log("Inventory cleared.");
-    //}
+        for(int i = 0; i < slotCount; i++)
+        {
+            Instantiate(slotPrefab, inventoryPanel.transform);
+        }
+
+        Debug.Log("Inventory cleared.");
+    }
+
 }

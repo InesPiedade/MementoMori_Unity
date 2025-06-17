@@ -42,6 +42,7 @@ public class Flower : MonoBehaviour, IInteractable
         uiManager.EndCutscene1();
         gameObject.SetActive(false);
         wall.SetActive(false);
-
+        uiManager.ObjectiveCave();
+        //ui manager - new objective
     }
 }

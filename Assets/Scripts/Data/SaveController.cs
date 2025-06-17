@@ -10,6 +10,7 @@ public class SaveController : MonoBehaviour
     public static SaveController instance;
     private string saveLocation;
     private InventoryController inventoryController;
+    [SerializeField] private Transform spawnPoint;
 
     private void Awake()
     {
@@ -70,14 +71,14 @@ public class SaveController : MonoBehaviour
 
     public void ResetGame()
     {
-        //SceneManager.LoadScene("Game");
 
         Player player = gameObject.GetComponent<Player>();
-        player.transform.position = new Vector3 (-2.56f, -3.2f, 0f);
+        player.transform.position = new Vector3(-2.56f, -3.2f, 0f);
+        //player.transform.position = spawnPoint.position;
 
-        //inventoryController.ClearInventory();
+        inventoryController.ClearInventory();
 
-        SaveGame();
+        //SaveGame();
 
         Debug.Log("New Game");
     }

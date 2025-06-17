@@ -33,7 +33,6 @@ public class Player : MonoBehaviour, IDamagable
 
     private Rigidbody2D rigidBody;
     public LayerMask groundLayer;
-    //public LayerMask interactLayer;
     public LayerMask UILayer;
     private SpriteRenderer spriteRenderer;
     [SerializeField] GameObject branch;
@@ -43,7 +42,7 @@ public class Player : MonoBehaviour, IDamagable
     private UiManager uiManager;
     private InventoryController inventoryController;
     private Flower flowerScript;
-    private DarkVisionAbility darkVisionAbility;
+    [SerializeField] private DarkVisionAbility darkVisionAbility;
     [SerializeField] private GameManager gameManager;
     [SerializeField] private SaveController saveController;
 
@@ -86,6 +85,7 @@ public class Player : MonoBehaviour, IDamagable
 
             if (isPower)
             {
+                darkVisionAbility.Timer();
                 DarkVisionOn();
                 StartCoroutine(VisionCooldown());
             }
@@ -242,18 +242,20 @@ public class Player : MonoBehaviour, IDamagable
     }
 
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerEnter2D(Collider2D Branchcollision)
     {
-        GameObject branch = collision.GetComponent<GameObject>();
+        GameObject branch = Branchcollision.GetComponent<GameObject>();
 
-        if (collision)
+        if (Branchcollision)
         {
             Debug.Log("DOG");
+            uiManager.ObjectiveDog();
             dog.SetActive(true);
             saveController.SaveGame();
         }
         else
         {
+            uiManager.ObjectiveFlower();
             dog.SetActive(false);
         }
 
