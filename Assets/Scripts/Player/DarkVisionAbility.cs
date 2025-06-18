@@ -15,4 +15,9 @@ public class DarkVisionAbility : MonoBehaviour
     {
         animator.SetTrigger("Timer");
     }
+
+    public void RecharginAbility()
+    {
+        animator.SetTrigger("RechargingAbility");
+    }
 }

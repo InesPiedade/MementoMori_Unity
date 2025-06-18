@@ -66,10 +66,7 @@ public class UiManager : MonoBehaviour
         organize.Add(Screens.Cutscene2, cutscene2);
         organize.Add(Screens.GameOver, gameOver);
 
-        flowerText.SetActive(true);
-        dogText.SetActive(false);
-        caveText.SetActive(false);
-        altarText.SetActive(false);
+        ObjectiveFlower();
     }
 
     private void Update()

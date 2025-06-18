@@ -23,6 +23,7 @@ public class Player : MonoBehaviour, IDamagable
     private bool isSiting;
     private bool isPower = true;
     private bool isDead;
+    [SerializeField] private bool branchBool;
 
     [SerializeField] private Vector2 boxSize;
     private Vector2 raycastDirection;
@@ -35,8 +36,6 @@ public class Player : MonoBehaviour, IDamagable
     public LayerMask groundLayer;
     public LayerMask UILayer;
     private SpriteRenderer spriteRenderer;
-    [SerializeField] GameObject branch;
-    [SerializeField] GameObject dog;
 
     private Animator animator;
     private UiManager uiManager;
@@ -118,6 +117,7 @@ public class Player : MonoBehaviour, IDamagable
     {
         if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
         {
+            animator.SetTrigger("Jump");
             RigidBody.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
         }
     }
@@ -195,6 +195,7 @@ public class Player : MonoBehaviour, IDamagable
         health -= damage;
         health = Mathf.Clamp(health, 0, 100);
         uiManager.HealthBar(health, 100);
+        animator.SetTrigger("Damage");
 
         if (health <= 0 && !isDead)
         {
@@ -238,38 +239,7 @@ public class Player : MonoBehaviour, IDamagable
 
     public void DarkVisionOff()
     {
+        darkVisionAbility.RecharginAbility();
         gameManager.VisionOff();
-    }
-
-
-    private void OnTriggerEnter2D(Collider2D Branchcollision)
-    {
-        GameObject branch = Branchcollision.GetComponent<GameObject>();
-
-        if (Branchcollision)
-        {
-            Debug.Log("DOG");
-            uiManager.ObjectiveDog();
-            dog.SetActive(true);
-            saveController.SaveGame();
-        }
-        else
-        {
-            uiManager.ObjectiveFlower();
-            dog.SetActive(false);
-        }
-
-        //if (collision.CompareTag("Item"))
-        //{
-        //    Item item = collision.GetComponent<Item>();
-        //    if (item != null)
-        //    {
-        //        bool itemAdded = inventoryController.AddItem(collision.gameObject);
-        //        if (itemAdded)
-        //        {
-        //            gameObject.GetComponent<IInteractable>().Interact();
-        //        }
-        //    }
-        //}
     }
 }
