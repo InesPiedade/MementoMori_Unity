@@ -194,6 +194,10 @@ public class UiManager : MonoBehaviour
     public void MainMenu()
     {
         SceneManager.LoadScene("MainMenu");
+        MusicManager.instance.PlayMainMenuMusic();
+        MusicManager.instance.StopForestMusic();
+        MusicManager.instance.StopCaveMusic();
+        MusicManager.instance.StopRunMusic();
     }
     public void Options()
     {

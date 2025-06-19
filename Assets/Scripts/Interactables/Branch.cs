@@ -10,19 +10,23 @@ public class Branch : MonoBehaviour
     [SerializeField] private UiManager uiManager;
     [SerializeField] private SaveController saveController;
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerEnter2D(Collider2D Branchcollision)
     {
-        Player player = collision.gameObject.GetComponent<Player>();
+        Player player = Branchcollision.gameObject.GetComponent<Player>();
 
-        if (collision)
+        if (Branchcollision)
         {
             Debug.Log("DOG");
+            MusicManager.instance.PlayRunMusic();
+            MusicManager.instance.StopForestMusic();
             uiManager.ObjectiveDog();
             dog.SetActive(true);
             saveController.SaveGame();
         }
         else
         {
+            MusicManager.instance.StopRunMusic();
+            MusicManager.instance.PlayForestMusic();
             uiManager.ObjectiveFlower();
             dog.SetActive(false);
         }

@@ -35,10 +35,16 @@ public class SaveController : MonoBehaviour
 
     public void SaveGame()
     {
+        //SoundMixerManager mixer = SoundMixerManager.instance;
         SaveData saveData = new SaveData
         {
             playerPosition = GameObject.FindGameObjectWithTag("Player").transform.position,
-            inventorySaveData = inventoryController.GetInventoryItems()
+            inventorySaveData = inventoryController.GetInventoryItems(),
+
+            //masterVolume = mixer.GetMasterVolume(),
+            //musicVolume = mixer.GetMusicVolume(),
+            //soundFXVolume = mixer.GetSoundFXVolume(),
+
         };
 
         File.WriteAllText(saveLocation, JsonUtility.ToJson(saveData));
@@ -52,8 +58,12 @@ public class SaveController : MonoBehaviour
             SaveData saveData = JsonUtility.FromJson<SaveData>(File.ReadAllText(saveLocation));
 
             GameObject.FindGameObjectWithTag("Player").transform.position = saveData.playerPosition;
-
             inventoryController.SetInventoryItems(saveData.inventorySaveData);
+
+            //SoundMixerManager mixer = SoundMixerManager.instance;
+            //mixer.SetMasterVolume(saveData.masterVolume);
+            //mixer.SetMusicVolume(saveData.musicVolume);
+            //mixer.SetSoundFXVolume(saveData.soundFXVolume);
 
             Debug.Log("GameLoaded");
         }
@@ -96,4 +106,8 @@ public class SaveController : MonoBehaviour
     //    SceneManager.LoadScene("Game");
 
     //}
+
+    //save music and volume
+
+
 }

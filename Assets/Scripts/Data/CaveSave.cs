@@ -5,8 +5,12 @@ using UnityEngine;
 public class CaveSave : MonoBehaviour
 {
     [SerializeField] private SaveController saveController;
-    [SerializeField] private UiManager uiManager;
+    private UiManager uiManager;
 
+    private void Start()
+    {
+        uiManager = UiManager.instance;
+    }
 
     private void OnTriggerEnter2D(Collider2D collisionCave)
     {
@@ -14,7 +18,8 @@ public class CaveSave : MonoBehaviour
 
         if (collisionCave)
         {
-            uiManager.ObjectiveAltar();
+            MusicManager.instance.PlayCaveMusic();
+            uiManager.ObjectiveCave();
             saveController.SaveGame();
         }
     }

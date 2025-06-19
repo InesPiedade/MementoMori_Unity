@@ -24,7 +24,7 @@ public class Flower : MonoBehaviour, IInteractable
     public void Interact()
     {
         Debug.Log("FLOWER");
-
+        MusicManager.instance.StopRunMusic();   
         StartCoroutine(StartCutscene1());
         saveController.SaveGame();
         //Update inventory 

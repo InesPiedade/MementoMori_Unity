@@ -9,12 +9,16 @@ public class Player : MonoBehaviour, IDamagable
     #region Declarations
     [Header("References")]
 
-    [SerializeField] private int health = 100;
+     private int health = 100;
     [SerializeField] private float horizontalInput;
-    [SerializeField] private float movementSpeed = 7;
+     private float movementSpeed = 7;
     [SerializeField] private float jumpForce;
     [SerializeField] private float groundCheckDistance;
-    [SerializeField] private float interactDistance = 4;
+     private float interactDistance = 4;
+    [SerializeField] private float footstepInterval = 7f;
+    private float footstepTimer;
+    private float stepInterval = 0.4f;
+
 
     private bool isInteracting;
     private bool isGrounded;
@@ -44,6 +48,10 @@ public class Player : MonoBehaviour, IDamagable
     [SerializeField] private DarkVisionAbility darkVisionAbility;
     [SerializeField] private GameManager gameManager;
     [SerializeField] private SaveController saveController;
+    [SerializeField] private AudioClip jumpSoundClip;
+    [SerializeField] private AudioClip damageSoundClip;
+    [SerializeField] private AudioClip[] walkSoundClip;
+    [SerializeField] private AudioClip runSoundClip;
 
 
 
@@ -67,17 +75,19 @@ public class Player : MonoBehaviour, IDamagable
     private void Update()
     {
         horizontalInput = Input.GetAxisRaw("Horizontal");
+        RigidBody.velocity = new Vector2(horizontalInput * movementSpeed, RigidBody.velocity.y);
+
+
 
         animator.SetFloat("MoveSpeed", Mathf.Abs(horizontalInput));
         animator.SetBool("IsGround", isGrounded);
         animator.SetBool("IsRunning", isRunning);
 
-        RigidBody.velocity = new Vector2(horizontalInput * movementSpeed, RigidBody.velocity.y);
-
         Jump();
         Run();
         IsGround();
         InteractCheck();
+        HandleFootSteps();
 
         if (Input.GetKeyDown(KeyCode.Q) && isPower == true)
         {
@@ -113,11 +123,13 @@ public class Player : MonoBehaviour, IDamagable
     }
 
     #region Actions
+
     private void Jump()
     {
         if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
         {
             animator.SetTrigger("Jump");
+            SoundFXManager.instance.PlaySoundFXClip(jumpSoundClip, transform, 1f);
             RigidBody.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
         }
     }
@@ -134,6 +146,7 @@ public class Player : MonoBehaviour, IDamagable
         {
             isRunning = true;
             movementSpeed = 15;
+            SoundFXManager.instance.PlaySoundFXClip(runSoundClip, transform, 1f);
         }
         else if (Input.GetKeyUp(KeyCode.LeftShift))
         {
@@ -144,6 +157,36 @@ public class Player : MonoBehaviour, IDamagable
 
     #endregion
 
+    private void HandleFootSteps()
+    {
+        bool isWalking = Mathf.Abs(horizontalInput) > 0.1f && isGrounded && !isRunning;
+
+        if(isWalking)
+        {
+            footstepTimer -= Time.deltaTime;
+
+            if(footstepTimer <= 0f)
+            {
+                PlayRandomFootstep();
+                footstepTimer = isRunning? stepInterval / 2 : stepInterval;
+            }
+        }
+        else
+        {
+            footstepTimer = 0f; 
+        }
+    }
+
+
+    private void PlayRandomFootstep()
+    {
+        if (walkSoundClip.Length > 0)
+        {
+            int randomIndex = Random.Range(0, walkSoundClip.Length);
+            AudioClip clip = walkSoundClip[randomIndex];
+            SoundFXManager.instance.PlaySoundFXClip(clip, transform, 1f);
+        }
+    }
     private void InteractCheck()
     {
         Debug.DrawRay(transform.position, raycastDirection * interactDistance, Color.green);
@@ -196,6 +239,7 @@ public class Player : MonoBehaviour, IDamagable
         health = Mathf.Clamp(health, 0, 100);
         uiManager.HealthBar(health, 100);
         animator.SetTrigger("Damage");
+        SoundFXManager.instance.PlaySoundFXClip(damageSoundClip, transform, 1f);
 
         if (health <= 0 && !isDead)
         {
