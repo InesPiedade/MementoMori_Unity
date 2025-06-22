@@ -39,6 +39,8 @@ public class UiManager : MonoBehaviour
     [SerializeField] private GameObject dogText;
     [SerializeField] private GameObject caveText;
     [SerializeField] private GameObject itemFlowerText;
+    [SerializeField] private GameObject hint1;
+    [SerializeField] private GameObject hint2;
 
     #endregion
 
@@ -77,10 +79,12 @@ public class UiManager : MonoBehaviour
         {
             if (isPause)
             {
-                Resume();
+                Cursor.visible = false;
+                Resume(); 
             }
             else
             {
+                Cursor.visible = true;
                 Pause();
             }
         }
@@ -89,10 +93,12 @@ public class UiManager : MonoBehaviour
         {
             if (isPause)
             {
+                Cursor.visible = false;
                 CloseInventory();
             }
             else
             {
+                Cursor.visible = true;
                 OpenInventory();
             }
         }
@@ -210,6 +216,7 @@ public class UiManager : MonoBehaviour
     }
     public void GameOver()
     {
+        Cursor.visible = true;
         OnGameOver?.Invoke();
         ShowPanel(Screens.GameOver);
         gameUi.SetActive(false);
@@ -257,5 +264,29 @@ public class UiManager : MonoBehaviour
         caveText.SetActive(false);
         dogText.SetActive (false);
         flowerText.SetActive (false);
+    }
+
+    public void ShiftHint()
+    {
+        hint1.SetActive(true);
+        StartCoroutine(Hint1Timer());
+    }
+
+    IEnumerator Hint1Timer()
+    {
+        yield return new WaitForSecondsRealtime(5f);
+        hint1.SetActive(false);
+    }
+    
+    public void QHint()
+    {
+        hint2.SetActive(true);
+        StartCoroutine(Hint2Timer());
+    }
+
+    IEnumerator Hint2Timer()
+    {
+        yield return new WaitForSecondsRealtime(5f);
+        hint2.SetActive(false);
     }
 }

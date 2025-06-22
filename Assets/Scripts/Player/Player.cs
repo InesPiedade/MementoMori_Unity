@@ -15,9 +15,12 @@ public class Player : MonoBehaviour, IDamagable
     [SerializeField] private float jumpForce;
     [SerializeField] private float groundCheckDistance;
      private float interactDistance = 4;
-    [SerializeField] private float footstepInterval = 7f;
     private float footstepTimer;
     private float stepInterval = 0.4f;
+    
+    [Range(0, 10)] [SerializeField] private int occurAfterVelocity;
+    [Range(0, 0.2f)] [SerializeField] private float dustFormationPeriod;
+    private float counter;
 
 
     private bool isInteracting;
@@ -52,6 +55,8 @@ public class Player : MonoBehaviour, IDamagable
     [SerializeField] private AudioClip damageSoundClip;
     [SerializeField] private AudioClip[] walkSoundClip;
     [SerializeField] private AudioClip runSoundClip;
+    
+    [SerializeField] private ParticleSystem movementParticle;
 
 
 
@@ -117,6 +122,16 @@ public class Player : MonoBehaviour, IDamagable
         {
             spriteRenderer.flipX = false;
             raycastDirection = Vector2.right;
+        }
+        
+        counter += Time.deltaTime;
+        if (isGrounded && Mathf.Abs(rigidBody.velocity.x) > occurAfterVelocity)
+        {
+            if (counter > dustFormationPeriod)
+            {
+                movementParticle.Play();
+                counter = 0;
+            }
         }
     }
 

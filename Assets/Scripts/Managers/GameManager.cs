@@ -42,12 +42,14 @@ public class GameManager : MonoBehaviour
     public void LoadLevel()
     {
         SceneManager.LoadScene("Game");
+        Cursor.visible = false;
         Time.timeScale = 1f;
     }
 
     public void StartNewGame()
     {
         SceneManager.LoadScene("Game");
+        Cursor.visible = false;
         MusicManager.instance.StopMainMenuMusic();
         saveController.ResetGame();
         Time.timeScale = 1f;

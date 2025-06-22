@@ -21,6 +21,7 @@ public class CaveSave : MonoBehaviour
             MusicManager.instance.PlayCaveMusic();
             uiManager.ObjectiveCave();
             saveController.SaveGame();
+            uiManager.QHint();
         }
     }
 }

@@ -9,12 +9,14 @@ public class Flower : MonoBehaviour, IInteractable
     #region Declarations
     [Header("Game Objects")]
     [SerializeField] private GameObject wall;
+
+    [SerializeField] private GameObject dog;
     //[SerializeField] private GameObject cutscene1;
     private UiManager uiManager;
     private GameManager gameManager;
     [SerializeField] private SaveController saveController;
-
-
+    [SerializeField] private GameObject abilityTimer;
+    
     #endregion
 
     private void Start()
@@ -42,7 +44,8 @@ public class Flower : MonoBehaviour, IInteractable
         uiManager.EndCutscene1();
         gameObject.SetActive(false);
         wall.SetActive(false);
+        abilityTimer.SetActive(true);
+        dog.SetActive(false);
         uiManager.ObjectiveCave();
-        //ui manager - new objective
     }
 }

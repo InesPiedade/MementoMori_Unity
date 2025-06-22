@@ -28,6 +28,8 @@ public class Branch : MonoBehaviour
             SoundFXManager.instance.PlaySoundFXClip(barkSoundClip, transform, 1f);
             // corroutine to play again after certain time 
             StartCoroutine(BarkTimer());
+			// shift to run
+			uiManager.ShiftHint();
         }
         else
         {
