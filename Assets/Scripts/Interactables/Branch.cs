@@ -9,19 +9,25 @@ public class Branch : MonoBehaviour
 
     [SerializeField] private UiManager uiManager;
     [SerializeField] private SaveController saveController;
+    [SerializeField] private AudioClip barkSoundClip;
 
-    private void OnTriggerEnter2D(Collider2D Branchcollision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        Player player = Branchcollision.gameObject.GetComponent<Player>();
+        Player player = collision.gameObject.GetComponent<Player>();
 
-        if (Branchcollision)
+        if (collision)
         {
             Debug.Log("DOG");
+            dog.SetActive(true);
             MusicManager.instance.PlayRunMusic();
             MusicManager.instance.StopForestMusic();
             uiManager.ObjectiveDog();
-            dog.SetActive(true);
+            // ui manager run tip
             saveController.SaveGame();
+            // dog sound play 
+            SoundFXManager.instance.PlaySoundFXClip(barkSoundClip, transform, 1f);
+            // corroutine to play again after certain time 
+            StartCoroutine(BarkTimer());
         }
         else
         {
@@ -30,5 +36,11 @@ public class Branch : MonoBehaviour
             uiManager.ObjectiveFlower();
             dog.SetActive(false);
         }
+    }
+    
+    private IEnumerator BarkTimer()
+    {
+        yield return new WaitForSeconds(7f);
+        SoundFXManager.instance.PlaySoundFXClip(barkSoundClip, transform, 1f);
     }
 }

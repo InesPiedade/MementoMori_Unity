@@ -77,8 +77,6 @@ public class Player : MonoBehaviour, IDamagable
         horizontalInput = Input.GetAxisRaw("Horizontal");
         RigidBody.velocity = new Vector2(horizontalInput * movementSpeed, RigidBody.velocity.y);
 
-
-
         animator.SetFloat("MoveSpeed", Mathf.Abs(horizontalInput));
         animator.SetBool("IsGround", isGrounded);
         animator.SetBool("IsRunning", isRunning);
@@ -142,8 +140,9 @@ public class Player : MonoBehaviour, IDamagable
 
     private void Run()
     {
-        if (Input.GetKeyDown(KeyCode.LeftShift) && isGrounded)
+        if (Input.GetKeyDown(KeyCode.LeftShift) && isGrounded )
         {
+            // animator timer ui
             isRunning = true;
             movementSpeed = 15;
             SoundFXManager.instance.PlaySoundFXClip(runSoundClip, transform, 1f);
@@ -261,6 +260,7 @@ public class Player : MonoBehaviour, IDamagable
         Time.timeScale = 0f;
     }
 
+    #region DarkVisionPower
     public void DarkVisionOn()
     {
         gameManager.VisionOn();
@@ -286,4 +286,6 @@ public class Player : MonoBehaviour, IDamagable
         darkVisionAbility.RecharginAbility();
         gameManager.VisionOff();
     }
+    
+    #endregion
 }
