@@ -5,7 +5,7 @@ using UnityEngine;
 public class Branch : MonoBehaviour
 {
     [SerializeField] private Player player;
-    [SerializeField] GameObject dog;
+    [SerializeField] private GameObject dog;
 
     [SerializeField] private UiManager uiManager;
     [SerializeField] private SaveController saveController;

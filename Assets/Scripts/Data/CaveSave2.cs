@@ -7,6 +7,7 @@ public class CaveSave2 : MonoBehaviour
     [SerializeField] private SaveController saveController;
     private GameManager gameManager;
     private UiManager uiManager;
+    [SerializeField] private GameObject abilityTimer;
 
     private void Start()
     {
@@ -22,6 +23,7 @@ public class CaveSave2 : MonoBehaviour
         {
             uiManager.ObjectiveCave();
             saveController.SaveGame();
+            abilityTimer.SetActive(true);
         }
     }
 }

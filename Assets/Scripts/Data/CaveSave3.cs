@@ -6,6 +6,7 @@ public class CaveSave3 : MonoBehaviour
 {
     [SerializeField] private SaveController saveController;
     [SerializeField] private UiManager uiManager;
+    [SerializeField] private GameObject abilityTimer;
 
 
     private void OnTriggerEnter2D(Collider2D collisionCave)
@@ -16,6 +17,7 @@ public class CaveSave3 : MonoBehaviour
         {
             uiManager.ObjectiveAltar();
             saveController.SaveGame();
+            abilityTimer.SetActive(true);
         }
     }
 }

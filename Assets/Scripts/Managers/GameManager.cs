@@ -26,6 +26,7 @@ public class GameManager : MonoBehaviour
     {
         floatingPlatforms.SetActive(false);
         shadowCave.SetActive(true);
+        Cursor.visible = false;
     }
     public void VisionOn()
     {
