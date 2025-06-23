@@ -15,6 +15,9 @@ public class StartSave : MonoBehaviour
         if (startCollision)
         {
             MusicManager.instance.PlayForestMusic();
+            MusicManager.instance.StopCaveMusic();
+            MusicManager.instance.StopRunMusic();
+            MusicManager.instance.StopMainMenuMusic();
             uiManager.ObjectiveFlower();
             saveController.SaveGame();
         }

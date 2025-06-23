@@ -10,7 +10,7 @@ public class UiManager : MonoBehaviour
 {
     public static UiManager instance;
     public static event Action OnGameOver;
-    public enum Screens { Pause, GameOver, Win, GameUi, Inventory, Cutscene1, Cutscene2}
+    public enum Screens { Pause, GameOver, Win, GameUi, Inventory, Cutscene1, Cutscene2, Instructions}
     private Dictionary<Screens, GameObject> organize;
 
     #region Declarations
@@ -236,7 +236,6 @@ public class UiManager : MonoBehaviour
             organize[panelType].SetActive(true);
         }
     }
-
     public void ObjectiveFlower()
     {
         flowerText.SetActive(true);

@@ -28,7 +28,6 @@ public class Flower : MonoBehaviour, IInteractable
         MusicManager.instance.StopRunMusic();   
         StartCoroutine(StartCutscene1());
         saveController.SaveGame();
-        //Update inventory 
     }
 
     private IEnumerator StartCutscene1()

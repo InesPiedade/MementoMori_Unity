@@ -39,7 +39,12 @@ public class Branch : MonoBehaviour
             dog.SetActive(false);
         }
     }
-    
+
+    //private void OnTriggerExit2D(Collider2D collision)
+    //{
+    //    dog.SetActive(true);
+    //}
+
     private IEnumerator BarkTimer()
     {
         yield return new WaitForSeconds(7f);

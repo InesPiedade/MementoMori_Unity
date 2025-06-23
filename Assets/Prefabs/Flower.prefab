@@ -243,7 +243,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   wall: {fileID: 0}
-  cutscene1: {fileID: 0}
+  dog: {fileID: 0}
   saveController: {fileID: 0}
 --- !u!58 &-8444880671664541942
 CircleCollider2D:
@@ -292,7 +292,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e574971684dca0c40b6e960768322b87, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ID: 0
+  ID: 1
 --- !u!1001 &9135992952780738190
 PrefabInstance:
   m_ObjectHideFlags: 0

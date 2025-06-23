@@ -17,6 +17,7 @@ public class SaveController : MonoBehaviour
         if (instance == null)
         {
             instance = this;
+            DontDestroyOnLoad(gameObject);
         }
         else
         {
@@ -81,16 +82,17 @@ public class SaveController : MonoBehaviour
 
     public void ResetGame()
     {
+        if (File.Exists(saveLocation))
+        {
+            SaveData saveData = JsonUtility.FromJson<SaveData>(File.ReadAllText(saveLocation));
 
-        Player player = gameObject.GetComponent<Player>();
-        player.transform.position = new Vector3(-2.56f, -3.2f, 0f);
-        //player.transform.position = spawnPoint.position;
+            GameObject.FindGameObjectWithTag("Player").transform.position = spawnPoint.position;
+            inventoryController.ClearInventory();
+            Cursor.visible = false;
 
-        inventoryController.ClearInventory();
 
-        //SaveGame();
-
-        Debug.Log("New Game");
+            Debug.Log("RESET GAME");
+        }
     }
 
     //public static void ClearSave(int slot = 1)
