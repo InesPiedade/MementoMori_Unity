@@ -54,7 +54,9 @@ public class GameManager : MonoBehaviour
 
     public void NewGame()
     {
-        SceneManager.LoadScene("Game");
+        SceneManager.LoadScene("Game");    
+        saveController.ResetGame();
+        MusicManager.instance.StopMainMenuMusic();
         Time.timeScale = 1f;
         Cursor.visible = true;
     }
@@ -62,7 +64,7 @@ public class GameManager : MonoBehaviour
     public void Instructions()
     {
         instructionsPanel.SetActive(true);
-        saveController.ResetGame();
+
         MusicManager.instance.StopMainMenuMusic();
         MusicManager.instance.StopCaveMusic();
         MusicManager.instance.StopForestMusic();

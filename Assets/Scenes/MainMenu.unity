@@ -464,9 +464,9 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 8201898427769096677}
   - {fileID: 1253505976}
   - {fileID: 608727948}
+  - {fileID: 8201898427769096677}
   - {fileID: 2112081106}
   - {fileID: 1529343478}
   m_Father: {fileID: 0}
@@ -2334,10 +2334,22 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2739856570050381207, guid: 2e88a93a6ad3b674fac6d68947b719e4, type: 3}
-        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
-        m_MethodName: NewGame
-        m_Mode: 1
+      - m_Target: {fileID: 1854308718}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 2112081105}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -2624,6 +2636,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1811413519}
   m_CullTransparentMesh: 1
+--- !u!1 &1854308718 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7513543854125165553, guid: fae7ac99ec1ce6f4da26d70f8d2029c3, type: 3}
+  m_PrefabInstance: {fileID: 1255174436204684498}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1952431515
 GameObject:
   m_ObjectHideFlags: 0
@@ -2989,6 +3006,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 499454997}
     m_Modifications:
+    - target: {fileID: 2243595752020545702, guid: fae7ac99ec1ce6f4da26d70f8d2029c3, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2243595752020545702, guid: fae7ac99ec1ce6f4da26d70f8d2029c3, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 408529473}
+    - target: {fileID: 2243595752020545702, guid: fae7ac99ec1ce6f4da26d70f8d2029c3, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: NewGame
+      objectReference: {fileID: 0}
     - target: {fileID: 7413163162084304804, guid: fae7ac99ec1ce6f4da26d70f8d2029c3, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
