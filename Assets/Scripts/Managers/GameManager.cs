@@ -1,5 +1,6 @@
-using System.Collections;
+using System;using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 using UnityEngine;
 
@@ -16,8 +17,6 @@ public class GameManager : MonoBehaviour
         if (instance == null)
         {
             instance = this;
-            DontDestroyOnLoad(gameObject);
-            DontDestroyOnLoad(instructionsPanel);
         }
         else
         {
@@ -46,7 +45,8 @@ public class GameManager : MonoBehaviour
 
     public void LoadLevel()
     {
-        saveController.LoadGame();
+        saveController.SaveGame();
+        SceneManager.LoadScene("Game");
         instructionsPanel.SetActive(false);
         Cursor.visible = false;
         Time.timeScale = 1f;
@@ -70,7 +70,6 @@ public class GameManager : MonoBehaviour
         Cursor.visible = true;
         Time.timeScale = 1f;
     }
-
     public void Quit()
     {
         Debug.Log("Exit");

@@ -10,7 +10,7 @@ public class SaveData
 
     public List<InventorySaveData> inventorySaveData;
 
-    public SoundMixerManager soundMixerSaveData;
+    //public SoundMixerManager soundMixerSaveData;
 
     //public float masterVolume;
     //public float musicVolume;

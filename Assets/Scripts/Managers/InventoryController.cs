@@ -11,7 +11,11 @@ public class InventoryController : MonoBehaviour
     [SerializeField] private GameObject[] itemPrefabs;
 
     private ItemDictionary itemDictionary;
-
+    public static InventoryController instance;
+    void Awake()
+    {
+        instance = this;
+    }
 
     void Start()
     {

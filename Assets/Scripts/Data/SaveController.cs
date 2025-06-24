@@ -1,8 +1,9 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEngine.SceneManagement;
-using UnityEngine;
 using System.IO;
+using UnityEngine;
+using UnityEngine.SceneManagement;
 
 
 public class SaveController : MonoBehaviour
@@ -11,13 +12,14 @@ public class SaveController : MonoBehaviour
     private string saveLocation;
     private InventoryController inventoryController;
     [SerializeField] private Transform spawnPoint;
+    SaveData currentSaveData;
 
     private void Awake()
     {
         if (instance == null)
         {
             instance = this;
-            DontDestroyOnLoad(gameObject);
+            //DontDestroyOnLoad(gameObject);
         }
         else
         {
@@ -28,7 +30,6 @@ public class SaveController : MonoBehaviour
     private void Start()
     {
         saveLocation = Path.Combine(Application.persistentDataPath, "saveData.json");
-
         inventoryController = GetComponent<InventoryController>();
 
         LoadGame();
@@ -36,30 +37,51 @@ public class SaveController : MonoBehaviour
 
     public void SaveGame()
     {
-        //SoundMixerManager mixer = SoundMixerManager.instance;
-        SaveData saveData = new SaveData
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        if (player == null)
         {
-            playerPosition = GameObject.FindGameObjectWithTag("Player").transform.position,
-            inventorySaveData = inventoryController.GetInventoryItems(),
+            Debug.LogError("No GameObject with tag 'Player' found!");
+            return;
+        }
 
-            //masterVolume = mixer.GetMasterVolume(),
-            //musicVolume = mixer.GetMusicVolume(),
-            //soundFXVolume = mixer.GetSoundFXVolume(),
+        if (currentSaveData != null)
+        {
+            currentSaveData.playerPosition = player.transform.position;
+            currentSaveData.inventorySaveData = InventoryController.instance.GetInventoryItems();
+        }
 
-        };
+        else
+            currentSaveData = new SaveData
+            {
+                playerPosition = player.transform.position,
+                inventorySaveData = inventoryController.GetInventoryItems(),
+            };
+        if(string.IsNullOrEmpty(saveLocation))
+            saveLocation = Path.Combine(Application.persistentDataPath, "saveData.json");
+        
+        File.WriteAllText(saveLocation, JsonUtility.ToJson(currentSaveData));
+        Debug.Log("Game Saved.");
 
-        File.WriteAllText(saveLocation, JsonUtility.ToJson(saveData));
-        Debug.Log("GameSaved");
     }
 
+    public void CheckForInventory()
+    {
+        if (inventoryController==null)
+        {
+            inventoryController=GetComponent<InventoryController>();
+        }
+    }
     public void LoadGame()
     {
         if(File.Exists(saveLocation))
         {
-            SaveData saveData = JsonUtility.FromJson<SaveData>(File.ReadAllText(saveLocation));
+            print(saveLocation);
+            currentSaveData = JsonUtility.FromJson<SaveData>(File.ReadAllText(saveLocation));
 
-            GameObject.FindGameObjectWithTag("Player").transform.position = saveData.playerPosition;
-            inventoryController.SetInventoryItems(saveData.inventorySaveData);
+            GameObject.FindGameObjectWithTag("Player").transform.position = currentSaveData.playerPosition;
+            CheckForInventory();
+
+            InventoryController.instance.SetInventoryItems(currentSaveData.inventorySaveData);
 
             //SoundMixerManager mixer = SoundMixerManager.instance;
             //mixer.SetMasterVolume(saveData.masterVolume);
@@ -71,7 +93,6 @@ public class SaveController : MonoBehaviour
         else
         {
             SaveGame();
-
         }
     }
 
@@ -84,7 +105,7 @@ public class SaveController : MonoBehaviour
     {
         if (File.Exists(saveLocation))
         {
-            SaveData saveData = JsonUtility.FromJson<SaveData>(File.ReadAllText(saveLocation));
+            currentSaveData = JsonUtility.FromJson<SaveData>(File.ReadAllText(saveLocation));
 
             GameObject.FindGameObjectWithTag("Player").transform.position = spawnPoint.position;
             inventoryController.ClearInventory();

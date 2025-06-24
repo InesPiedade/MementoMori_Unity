@@ -15,7 +15,7 @@ public class Branch : MonoBehaviour
     {
         Player player = collision.gameObject.GetComponent<Player>();
 
-        if (collision)
+        if (player != null)
         {
             Debug.Log("DOG");
             dog.SetActive(true);
@@ -36,7 +36,6 @@ public class Branch : MonoBehaviour
             MusicManager.instance.StopRunMusic();
             MusicManager.instance.PlayForestMusic();
             uiManager.ObjectiveFlower();
-            dog.SetActive(false);
         }
     }
 
