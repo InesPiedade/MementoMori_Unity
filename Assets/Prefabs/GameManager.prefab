@@ -44,7 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 170d664ef62d7af4bb4e1c2e5fa4d7e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  floatingPlatforms: {fileID: 4170175001177065620, guid: 9d8ba2e7b3c82f64f8b5287f63b96e33, type: 3}
+  floatingPlatforms: {fileID: 7521773538718096467, guid: 1b17f0c33e6fc8e41b77657a9edb2d99, type: 3}
   shadowCave: {fileID: 6546025996671982350, guid: e47668215e27d9447b3958038d83cb43, type: 3}
   instructionsPanel: {fileID: 7513543854125165553, guid: fae7ac99ec1ce6f4da26d70f8d2029c3, type: 3}
   saveController: {fileID: 1121218149256792279, guid: 7ed23263c94727c4f9ada67079ce493c, type: 3}

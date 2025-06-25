@@ -46,8 +46,14 @@ public class Altar : MonoBehaviour, IInteractable
     {
         yield return new WaitForSeconds(4f);
         uiManager.EndCutscene2();
-        gameObject.SetActive(false);
         //ui manager, credits
+        uiManager.StartCutscene3();
+        StartCoroutine(EndCutscene3());
+    }
 
+    private IEnumerator EndCutscene3()
+    {
+        yield return new WaitForSeconds(31f);
+        uiManager.EndCutscene3();
     }
 }

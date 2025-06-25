@@ -17,8 +17,6 @@ public class Branch : MonoBehaviour
 
         if (player != null)
         {
-            Debug.Log("DOG");
-            dog.SetActive(true);
             MusicManager.instance.PlayRunMusic();
             MusicManager.instance.StopForestMusic();
             uiManager.ObjectiveDog();

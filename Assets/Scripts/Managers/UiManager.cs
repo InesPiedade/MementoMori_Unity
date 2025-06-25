@@ -10,7 +10,7 @@ public class UiManager : MonoBehaviour
 {
     public static UiManager instance;
     public static event Action OnGameOver;
-    public enum Screens { Pause, GameOver, Win, GameUi, Inventory, Cutscene1, Cutscene2, Instructions}
+    public enum Screens { Pause, GameOver, Win, GameUi, Inventory, Cutscene1, Cutscene2, Cutscene3, Instructions }
     private Dictionary<Screens, GameObject> organize;
 
     #region Declarations
@@ -31,8 +31,10 @@ public class UiManager : MonoBehaviour
 
     [SerializeField] private GameObject cutscene1;
     [SerializeField] private GameObject cutscene2;
+    [SerializeField] private GameObject cutscene3;
     [SerializeField] private VideoPlayer video1;
     [SerializeField] private VideoPlayer video2;
+    [SerializeField] private VideoPlayer video3;
 
     [SerializeField] private GameObject flowerText;
     [SerializeField] private GameObject altarText;
@@ -66,6 +68,7 @@ public class UiManager : MonoBehaviour
         organize.Add(Screens.Inventory, inventory);
         organize.Add(Screens.Cutscene1, cutscene1);
         organize.Add(Screens.Cutscene2, cutscene2);
+        organize.Add(Screens.Cutscene3, cutscene3);
         organize.Add(Screens.GameOver, gameOver);
 
         ObjectiveFlower();
@@ -175,6 +178,15 @@ public class UiManager : MonoBehaviour
         isPause = true;
     }
 
+    public void StartCutscene3()
+    {
+        ShowPanel(Screens.Cutscene3);
+        video3.Play();
+        gameUi.SetActive(false);
+        player.enabled = false;
+        isPause = true;
+    }
+
     /// ///////////////
 
     public void EndCutscene1()
@@ -195,6 +207,15 @@ public class UiManager : MonoBehaviour
         isPause = false;
     }
 
+    public void EndCutscene3()
+    {
+        video3.Pause();
+        cutscene3.SetActive(false);
+        SceneManager.LoadScene("MainMenu");
+        //ShowPanel(Screens.GameUi);
+        //player.enabled = true;
+        //isPause = false;
+    }
     /// ///////////////
 
     public void MainMenu()

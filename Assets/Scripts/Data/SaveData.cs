@@ -10,18 +10,6 @@ public class SaveData
 
     public List<InventorySaveData> inventorySaveData;
 
-    //public SoundMixerManager soundMixerSaveData;
-
-    //public float masterVolume;
-    //public float musicVolume;
-    //public float soundFXVolume;
-
-    //music save and volume
-
-    //public float musicVolume;
-    //public float soundFxVolume;
-    //public string currentlyPlayingMusic;
-
 
 
 }
