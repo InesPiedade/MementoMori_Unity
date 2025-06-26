@@ -16,12 +16,6 @@ public class MusicManager : MonoBehaviour
         if (instance == null)
         {
             instance = this;
-            DontDestroyOnLoad(gameObject);
-            DontDestroyOnLoad(forestMusicTrack);
-            DontDestroyOnLoad(runMusicTrack);
-            DontDestroyOnLoad(caveMusicTrack);
-            DontDestroyOnLoad(mainMenuMusicTrack);
-            DontDestroyOnLoad(creditsMusicTrack);
         }
         else
         {
@@ -33,10 +27,6 @@ public class MusicManager : MonoBehaviour
     public void PlayForestMusic()
     {
         forestMusicTrack.Play();
-        mainMenuMusicTrack.Stop();
-        caveMusicTrack.Stop();
-        runMusicTrack.Stop();
-        creditsMusicTrack.Stop();
     }
     public void StopForestMusic()
     {
@@ -48,10 +38,6 @@ public class MusicManager : MonoBehaviour
     public void PlayRunMusic()
     {
         runMusicTrack.Play();
-        forestMusicTrack.Stop();
-        mainMenuMusicTrack.Stop();
-        caveMusicTrack.Stop();
-        creditsMusicTrack.Stop();
     }
 
     public void StopRunMusic()
@@ -64,10 +50,6 @@ public class MusicManager : MonoBehaviour
     public void PlayCaveMusic()
     {
         caveMusicTrack.Play();
-        runMusicTrack.Stop();
-        forestMusicTrack.Stop();
-        mainMenuMusicTrack.Stop();
-        creditsMusicTrack.Stop();
     }
 
     public void StopCaveMusic()
@@ -80,10 +62,6 @@ public class MusicManager : MonoBehaviour
     public void PlayMainMenuMusic()
     {
         mainMenuMusicTrack.Play();
-        runMusicTrack.Stop();
-        forestMusicTrack.Stop();
-        caveMusicTrack.Stop();
-        creditsMusicTrack.Stop();
     }
 
     public void StopMainMenuMusic()
@@ -96,10 +74,6 @@ public class MusicManager : MonoBehaviour
     public void PlayCreditsMusic()
     {
         creditsMusicTrack.Play();
-        mainMenuMusicTrack.Stop();
-        runMusicTrack.Stop();
-        forestMusicTrack.Stop();
-        caveMusicTrack.Stop();
     }
 
     public void StopCreditsMusic()

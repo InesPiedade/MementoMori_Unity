@@ -55,7 +55,8 @@ public class Player : MonoBehaviour, IDamagable
     [SerializeField] private AudioClip damageSoundClip;
     [SerializeField] private AudioClip[] walkSoundClip;
     [SerializeField] private AudioClip runSoundClip;
-    
+    [SerializeField] private GameObject dog;
+
     [SerializeField] private ParticleSystem movementParticle;
 
 
@@ -275,6 +276,16 @@ public class Player : MonoBehaviour, IDamagable
         Time.timeScale = 0f;
     }
 
+    private void OnTriggerEnter2D(Collider2D dogCollision)
+    {
+        Branch branch = dogCollision.gameObject.GetComponent<Branch>();
+
+        if (branch != null)
+        {
+            dog.SetActive(true);
+        }
+    }
+
     #region DarkVisionPower
     public void DarkVisionOn()
     {
@@ -285,14 +296,14 @@ public class Player : MonoBehaviour, IDamagable
     private IEnumerator TimerDarkVision()
     {
         darkVisionAbility.Timer();
-        yield return new WaitForSeconds(5f);
+        yield return new WaitForSeconds(10f);
         DarkVisionOff();
     }
 
     private IEnumerator VisionCooldown()
     {
         isPower = false;
-        yield return new WaitForSeconds(10f);
+        yield return new WaitForSeconds(15f);
         isPower = true;
     }
 

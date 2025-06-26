@@ -19,7 +19,7 @@ public class CaveSave2 : MonoBehaviour
     {
         Player player = collisionCave.transform.GetComponent<Player>();
 
-        if (collisionCave)
+        if (player != null)
         {
             uiManager.ObjectiveCave();
             saveController.SaveGame();

@@ -5,7 +5,6 @@ using UnityEngine;
 public class Branch : MonoBehaviour
 {
     [SerializeField] private Player player;
-    [SerializeField] private GameObject dog;
 
     [SerializeField] private UiManager uiManager;
     [SerializeField] private SaveController saveController;
@@ -25,7 +24,7 @@ public class Branch : MonoBehaviour
             // dog sound play 
             SoundFXManager.instance.PlaySoundFXClip(barkSoundClip, transform, 1f);
             // corroutine to play again after certain time 
-            StartCoroutine(BarkTimer());
+            //StartCoroutine(BarkTimer());
 			// shift to run
 			uiManager.ShiftHint();
         }
@@ -37,14 +36,10 @@ public class Branch : MonoBehaviour
         //}
     }
 
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        dog.SetActive(true);
-    }
 
-    private IEnumerator BarkTimer()
-    {
-        yield return new WaitForSeconds(7f);
-        SoundFXManager.instance.PlaySoundFXClip(barkSoundClip, transform, 1f);
-    }
+    //private IEnumerator BarkTimer()
+    //{
+    //    yield return new WaitForSeconds(7f);
+    //    SoundFXManager.instance.PlaySoundFXClip(barkSoundClip, transform, 1f);
+    //}
 }

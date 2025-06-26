@@ -17,7 +17,7 @@ public class CaveSave : MonoBehaviour
     {
         Player player = collisionCave.transform.GetComponent<Player>();
 
-        if (collisionCave)
+        if (player != null)
         {
             MusicManager.instance.PlayCaveMusic();
             uiManager.ObjectiveCave();

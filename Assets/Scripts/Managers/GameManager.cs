@@ -43,7 +43,7 @@ public class GameManager : MonoBehaviour
 
     public void LoadLevel()
     {
-        saveController.SaveGame();
+        //saveController.SaveGame();
         SceneManager.LoadScene("Game");
         Cursor.visible = false;
         Time.timeScale = 1f;

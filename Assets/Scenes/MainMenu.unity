@@ -815,6 +815,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1715191093}
     - target: {fileID: 6643087151793744977, guid: 4c8e52f651cdecc4688c8a607565119b, type: 3}
+      propertyPath: creditsMusicTrack
+      value: 
+      objectReference: {fileID: 4053304633330722045, guid: 5403fab3c82ba52489b3bbc6112ee84a, type: 3}
+    - target: {fileID: 6643087151793744977, guid: 4c8e52f651cdecc4688c8a607565119b, type: 3}
       propertyPath: mainMenuMusicTrack
       value: 
       objectReference: {fileID: 1398823090}
@@ -2407,6 +2411,63 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ad458f8472a7574d86680f916fcef03, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1001 &1756451360
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2836554332084732241, guid: 5403fab3c82ba52489b3bbc6112ee84a, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 340.3025
+      objectReference: {fileID: 0}
+    - target: {fileID: 2836554332084732241, guid: 5403fab3c82ba52489b3bbc6112ee84a, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 97.46258
+      objectReference: {fileID: 0}
+    - target: {fileID: 2836554332084732241, guid: 5403fab3c82ba52489b3bbc6112ee84a, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.58190167
+      objectReference: {fileID: 0}
+    - target: {fileID: 2836554332084732241, guid: 5403fab3c82ba52489b3bbc6112ee84a, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2836554332084732241, guid: 5403fab3c82ba52489b3bbc6112ee84a, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2836554332084732241, guid: 5403fab3c82ba52489b3bbc6112ee84a, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2836554332084732241, guid: 5403fab3c82ba52489b3bbc6112ee84a, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2836554332084732241, guid: 5403fab3c82ba52489b3bbc6112ee84a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2836554332084732241, guid: 5403fab3c82ba52489b3bbc6112ee84a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2836554332084732241, guid: 5403fab3c82ba52489b3bbc6112ee84a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5247478337118980968, guid: 5403fab3c82ba52489b3bbc6112ee84a, type: 3}
+      propertyPath: m_Name
+      value: CreditsMusictrack
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 5403fab3c82ba52489b3bbc6112ee84a, type: 3}
 --- !u!1 &1792684237
 GameObject:
   m_ObjectHideFlags: 0
@@ -3310,3 +3371,4 @@ SceneRoots:
   - {fileID: 503071708}
   - {fileID: 196553966}
   - {fileID: 1707103202}
+  - {fileID: 1756451360}

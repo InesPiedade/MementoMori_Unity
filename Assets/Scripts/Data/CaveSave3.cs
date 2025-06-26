@@ -13,7 +13,7 @@ public class CaveSave3 : MonoBehaviour
     {
         Player player = collisionCave.transform.GetComponent<Player>();
 
-        if (collisionCave)
+        if (player != null)
         {
             uiManager.ObjectiveAltar();
             saveController.SaveGame();

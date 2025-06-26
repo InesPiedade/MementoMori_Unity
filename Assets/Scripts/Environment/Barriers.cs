@@ -6,9 +6,9 @@ public class Barriers : MonoBehaviour
 {
     public int damageOnContact = 200;
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnCollisionEnter2D(Collision2D barrierCollision)
     {
-        Player player = collision.gameObject.GetComponent<Player>();
+        Player player = barrierCollision.gameObject.GetComponent<Player>();
 
         if (player != null)
         {
