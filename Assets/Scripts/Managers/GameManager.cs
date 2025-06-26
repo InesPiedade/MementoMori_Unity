@@ -9,7 +9,6 @@ public class GameManager : MonoBehaviour
     public static GameManager instance;
     [SerializeField] private GameObject floatingPlatforms;
     [SerializeField] private GameObject shadowCave;
-    [SerializeField] private GameObject instructionsPanel;
     private Player player;
     [SerializeField] private SaveController saveController;
     private void Awake()
@@ -28,7 +27,6 @@ public class GameManager : MonoBehaviour
     {
         floatingPlatforms.SetActive(false);
         shadowCave.SetActive(true);
-        //instructionsPanel.SetActive(true);
 
     }
     public void VisionOn()
@@ -47,7 +45,6 @@ public class GameManager : MonoBehaviour
     {
         saveController.SaveGame();
         SceneManager.LoadScene("Game");
-        instructionsPanel.SetActive(false);
         Cursor.visible = false;
         Time.timeScale = 1f;
     }
@@ -61,17 +58,16 @@ public class GameManager : MonoBehaviour
         Cursor.visible = true;
     }
 
-    public void Instructions()
-    {
-        instructionsPanel.SetActive(true);
+    //public void Instructions()
+    //{
 
-        MusicManager.instance.StopMainMenuMusic();
-        MusicManager.instance.StopCaveMusic();
-        MusicManager.instance.StopForestMusic();
-        MusicManager.instance.StopRunMusic();
-        Cursor.visible = true;
-        Time.timeScale = 1f;
-    }
+    //    MusicManager.instance.StopMainMenuMusic();
+    //    MusicManager.instance.StopCaveMusic();
+    //    MusicManager.instance.StopForestMusic();
+    //    MusicManager.instance.StopRunMusic();
+    //    Cursor.visible = true;
+    //    Time.timeScale = 1f;
+    //}
     public void Quit()
     {
         Debug.Log("Exit");

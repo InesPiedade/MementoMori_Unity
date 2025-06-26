@@ -29,18 +29,18 @@ public class Branch : MonoBehaviour
 			// shift to run
 			uiManager.ShiftHint();
         }
-        else
-        {
-            MusicManager.instance.StopRunMusic();
-            MusicManager.instance.PlayForestMusic();
-            uiManager.ObjectiveFlower();
-        }
+        //else
+        //{
+        //    MusicManager.instance.StopRunMusic();
+        //    MusicManager.instance.PlayForestMusic();
+        //    uiManager.ObjectiveFlower();
+        //}
     }
 
-    //private void OnTriggerExit2D(Collider2D collision)
-    //{
-    //    dog.SetActive(true);
-    //}
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        dog.SetActive(true);
+    }
 
     private IEnumerator BarkTimer()
     {

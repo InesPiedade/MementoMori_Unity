@@ -8,7 +8,7 @@ public class Altar : MonoBehaviour, IInteractable
 {
     #region Declarations
     [Header("Game Objects")]
-    //[SerializeField] private GameObject cutscene2;
+    [SerializeField] private GameObject flowerAltar;
 
     [Header("References")]
     private UiManager uiManager;
@@ -32,6 +32,7 @@ public class Altar : MonoBehaviour, IInteractable
     private IEnumerator SitAnimation()
     {
         player.Sit();
+        flowerAltar.SetActive(true);
         yield return new WaitForSeconds(3f);
         StartCoroutine(StartCutscene2());
     }
@@ -46,14 +47,21 @@ public class Altar : MonoBehaviour, IInteractable
     {
         yield return new WaitForSeconds(4f);
         uiManager.EndCutscene2();
-        //ui manager, credits
-        uiManager.StartCutscene3();
-        StartCoroutine(EndCutscene3());
+        StartCoroutine(StartCutscene3());
     }
 
+    private IEnumerator StartCutscene3()
+    {
+        yield return new WaitForSeconds(0f);
+        //ui manager, credits
+        uiManager.StartCutscene3();
+        MusicManager.instance.PlayCreditsMusic();
+        StartCoroutine(EndCutscene3());
+    }
     private IEnumerator EndCutscene3()
     {
-        yield return new WaitForSeconds(31f);
+        yield return new WaitForSeconds(55f);
+        MusicManager.instance.StopCreditsMusic();
         uiManager.EndCutscene3();
     }
 }
