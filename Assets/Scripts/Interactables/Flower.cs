@@ -32,13 +32,13 @@ public class Flower : MonoBehaviour, IInteractable
 
     private IEnumerator StartCutscene1()
     {
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(1f);
         uiManager.StartCutscene1();
         StartCoroutine(EndCutscene1());
     }
     private IEnumerator EndCutscene1()
     {
-        yield return new WaitForSeconds(4f);
+        yield return new WaitForSeconds(18f);
         uiManager.EndCutscene1();
         gameObject.SetActive(false);
         wall.SetActive(false);

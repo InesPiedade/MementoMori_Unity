@@ -164,6 +164,7 @@ public class UiManager : MonoBehaviour
     {
         ShowPanel(Screens.Cutscene1);
         video1.Play();
+        MusicManager.instance.PlayFlowerMusic();
         gameUi.SetActive(false);
         player.enabled = false;
         isPause = true;
@@ -173,6 +174,8 @@ public class UiManager : MonoBehaviour
     {
         ShowPanel(Screens.Cutscene2);
         video2.Play();
+        MusicManager.instance.PlayAltarMusic();
+        MusicManager.instance.StopCaveMusic();
         gameUi.SetActive(false);
         player.enabled = false;
         isPause = true;
@@ -192,6 +195,7 @@ public class UiManager : MonoBehaviour
     public void EndCutscene1()
     {
         video1.Pause();
+        MusicManager.instance.StopFlowerMusic();
         cutscene1.SetActive(false);
         ShowPanel(Screens.GameUi);
         player.enabled = true;
@@ -201,6 +205,7 @@ public class UiManager : MonoBehaviour
     public void EndCutscene2()
     {
         video2.Pause();
+        MusicManager.instance.StopAltarMusic();
         cutscene2.SetActive(false);
         ShowPanel(Screens.GameUi);
         player.enabled = true;

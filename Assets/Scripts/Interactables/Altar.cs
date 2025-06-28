@@ -45,14 +45,14 @@ public class Altar : MonoBehaviour, IInteractable
     }
     private IEnumerator EndCutscene2()
     {
-        yield return new WaitForSeconds(4f);
+        yield return new WaitForSeconds(30f);
         uiManager.EndCutscene2();
         StartCoroutine(StartCutscene3());
     }
 
     private IEnumerator StartCutscene3()
     {
-        yield return new WaitForSeconds(0f);
+        yield return new WaitForSeconds(0.5f);
         //ui manager, credits
         uiManager.StartCutscene3();
         MusicManager.instance.PlayCreditsMusic();

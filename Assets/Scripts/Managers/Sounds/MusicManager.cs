@@ -10,6 +10,8 @@ public class MusicManager : MonoBehaviour
     [SerializeField] private AudioSource caveMusicTrack;
     [SerializeField] private AudioSource mainMenuMusicTrack;
     [SerializeField] private AudioSource creditsMusicTrack;
+    [SerializeField] private AudioSource flowerMusicTrack;
+    [SerializeField] private AudioSource altarMusicTrack;
 
     private void Awake()
     {
@@ -79,6 +81,30 @@ public class MusicManager : MonoBehaviour
     public void StopCreditsMusic()
     {
         creditsMusicTrack.Pause();
+    }
+    #endregion
+
+    #region FlowerMusic
+    public void PlayFlowerMusic()
+    {
+        flowerMusicTrack.Play();
+    }
+
+    public void StopFlowerMusic()
+    {
+        flowerMusicTrack.Pause();
+    }
+    #endregion
+
+    #region AltarMusic
+    public void PlayAltarMusic()
+    {
+        altarMusicTrack.Play();
+    }
+
+    public void StopAltarMusic()
+    {
+        altarMusicTrack.Pause();
     }
     #endregion
 }

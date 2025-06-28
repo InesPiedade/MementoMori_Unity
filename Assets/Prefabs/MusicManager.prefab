@@ -49,3 +49,5 @@ MonoBehaviour:
   caveMusicTrack: {fileID: 8991500822509357325, guid: d8cbb22e33d9f7c4197bcfb1847bbe52, type: 3}
   mainMenuMusicTrack: {fileID: 2647969428915868658, guid: 823bd6cd73e042a4c882b8cfd1b00263, type: 3}
   creditsMusicTrack: {fileID: 4053304633330722045, guid: 5403fab3c82ba52489b3bbc6112ee84a, type: 3}
+  flowerMusicTrack: {fileID: 9109749678626301342, guid: a3cdcf2bc2dd9974ea6e01017967cc27, type: 3}
+  altarMusicTrack: {fileID: 7595056815811808857, guid: bdd23c361ffd63b4fa966c783ad12ccf, type: 3}
