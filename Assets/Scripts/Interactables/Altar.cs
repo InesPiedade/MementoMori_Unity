@@ -60,7 +60,7 @@ public class Altar : MonoBehaviour, IInteractable
     }
     private IEnumerator EndCutscene3()
     {
-        yield return new WaitForSeconds(55f);
+        yield return new WaitForSeconds(50f);
         MusicManager.instance.StopCreditsMusic();
         uiManager.EndCutscene3();
     }
